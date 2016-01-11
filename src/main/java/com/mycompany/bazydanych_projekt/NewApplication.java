@@ -86,14 +86,15 @@ public class NewApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SetUserJFrame = new javax.swing.JFrame();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        addtUserJFrame = new javax.swing.JFrame();
         jButton3 = new javax.swing.JButton();
         PodajImie = new javax.swing.JTextField();
         PodajNazwisko = new javax.swing.JTextField();
         PodajNick = new javax.swing.JTextField();
         AddUser = new javax.swing.JButton();
+        addUserJFramePodajImieLabel = new javax.swing.JLabel();
+        addUserJFramePodajNazwiskoLabel = new javax.swing.JLabel();
+        addUserJFramePodajNickLabel = new javax.swing.JLabel();
         addRekwizytFrame = new javax.swing.JFrame();
         wybieranieRekwizytu = new javax.swing.JComboBox();
         ilosc = new javax.swing.JTextField();
@@ -103,9 +104,10 @@ public class NewApplication extends javax.swing.JFrame {
         dodajRekwizytDoPrzepisuIlosc = new javax.swing.JTextField();
         dodajRekwizytDoPrzepisuButton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        nazwaRekwizytuLabel = new javax.swing.JLabel();
+        iloscRekwizytowLabel = new javax.swing.JLabel();
         addProductOsAddPrzepisSkladnikFrame = new javax.swing.JFrame();
         addProductOsDataWaznosci = new javax.swing.JTextField();
-        checkRekOpt1 = new javax.swing.JCheckBox();
         addProductOsIlosc = new javax.swing.JTextField();
         addProduktButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -114,6 +116,8 @@ public class NewApplication extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         dodajPrzepisdodajSkladnikIlosc = new javax.swing.JTextField();
         dodajPrzepisDodajSkladnikButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        podajDateWaznosciLabel = new javax.swing.JLabel();
         addProductJednostkaFrame = new javax.swing.JFrame();
         wybieranieProduktu2 = new javax.swing.JComboBox();
         wybieranieJednostki = new javax.swing.JComboBox();
@@ -123,6 +127,11 @@ public class NewApplication extends javax.swing.JFrame {
         dodawanieJednostki = new javax.swing.JButton();
         dodawanieProduktuJedDoBazy = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         wyswietlTwojeRekwizytyFrame = new javax.swing.JFrame();
         zamknijWyswietlTwojeRekwizytyFrame = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -146,6 +155,11 @@ public class NewApplication extends javax.swing.JFrame {
         dodajPrzepisdodajSkladnikiTable = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
         dodajPrzepisDodajRekwizytTable = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Komunikat = new javax.swing.JTextField();
@@ -168,19 +182,13 @@ public class NewApplication extends javax.swing.JFrame {
         dodajPrzepisOpen = new javax.swing.JMenuItem();
         wyswietlPrzepisy = new javax.swing.JMenuItem();
 
-        SetUserJFrame.setTitle("Okienko");
-        SetUserJFrame.setMinimumSize(new java.awt.Dimension(600, 600));
+        addtUserJFrame.setTitle("Dodaj nowego użytkownika");
+        addtUserJFrame.setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        addtUserJFrame.setMinimumSize(new java.awt.Dimension(276, 245));
+        addtUserJFrame.setResizable(false);
+        this.addtUserJFrame.setLocationRelativeTo(null);
 
-        jTextField1.setText("Siemka");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton3.setText("OK");
+        jButton3.setText("Zamknij okno");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -194,56 +202,63 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout SetUserJFrameLayout = new javax.swing.GroupLayout(SetUserJFrame.getContentPane());
-        SetUserJFrame.getContentPane().setLayout(SetUserJFrameLayout);
-        SetUserJFrameLayout.setHorizontalGroup(
-            SetUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SetUserJFrameLayout.createSequentialGroup()
-                .addGroup(SetUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SetUserJFrameLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(SetUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(75, 75, 75)
-                        .addGroup(SetUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PodajImie, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(SetUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(PodajNick, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                                .addComponent(PodajNazwisko))
-                            .addComponent(AddUser)))
-                    .addGroup(SetUserJFrameLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jButton3)))
-                .addContainerGap(110, Short.MAX_VALUE))
+        addUserJFramePodajImieLabel.setText("Podaj imię");
+
+        addUserJFramePodajNazwiskoLabel.setText("Podaj nazwisko");
+
+        addUserJFramePodajNickLabel.setText("Podaj nick");
+
+        javax.swing.GroupLayout addtUserJFrameLayout = new javax.swing.GroupLayout(addtUserJFrame.getContentPane());
+        addtUserJFrame.getContentPane().setLayout(addtUserJFrameLayout);
+        addtUserJFrameLayout.setHorizontalGroup(
+            addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addtUserJFrameLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addtUserJFrameLayout.createSequentialGroup()
+                        .addComponent(PodajImie, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(addUserJFramePodajImieLabel))
+                    .addGroup(addtUserJFrameLayout.createSequentialGroup()
+                        .addGroup(addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(PodajNazwisko, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PodajNick, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(addUserJFramePodajNazwiskoLabel)
+                            .addComponent(addUserJFramePodajNickLabel))))
+                .addGap(23, 23, 23))
         );
-        SetUserJFrameLayout.setVerticalGroup(
-            SetUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SetUserJFrameLayout.createSequentialGroup()
-                .addGroup(SetUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SetUserJFrameLayout.createSequentialGroup()
-                        .addGroup(SetUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(SetUserJFrameLayout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(SetUserJFrameLayout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(PodajImie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SetUserJFrameLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(PodajNazwisko, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        addtUserJFrameLayout.setVerticalGroup(
+            addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addtUserJFrameLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(PodajImie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addUserJFramePodajImieLabel))
+                    .addGroup(addtUserJFrameLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PodajNazwisko, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addUserJFramePodajNazwiskoLabel))))
                 .addGap(20, 20, 20)
-                .addComponent(PodajNick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PodajNick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addUserJFramePodajNickLabel))
                 .addGap(18, 18, 18)
-                .addComponent(AddUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(30, 30, 30))
+                .addGroup(addtUserJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddUser)
+                    .addComponent(jButton3))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        addRekwizytFrame.setMinimumSize(new java.awt.Dimension(500, 400));
+        addRekwizytFrame.setTitle("Dodaj rekwizyt");
+        addRekwizytFrame.setMinimumSize(new java.awt.Dimension(400, 200));
+        addRekwizytFrame.setResizable(false);
+        this.addRekwizytFrame.setLocationRelativeTo(null);
 
         wybieranieRekwizytu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         wybieranieRekwizytu.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +267,7 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
 
-        checkRekOpt.setText("Chce wybrać rekwizyt z listy istniejących rekwizytów");
+        checkRekOpt.setText("Wybierz rekwizyt z listy dostępnych rekwizytów");
         checkRekOpt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkRekOptActionPerformed(evt);
@@ -272,9 +287,7 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
 
-        dodajRekwizytDoPrzepisuIlosc.setText("jTextField2");
-
-        dodajRekwizytDoPrzepisuButton.setText("Dodaj doPrz");
+        dodajRekwizytDoPrzepisuButton.setText("Dodaj");
         dodajRekwizytDoPrzepisuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dodajRekwizytDoPrzepisuButtonActionPerformed(evt);
@@ -288,75 +301,76 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
 
+        nazwaRekwizytuLabel.setText("Nazwa");
+
+        iloscRekwizytowLabel.setText("Ilość");
+
         javax.swing.GroupLayout addRekwizytFrameLayout = new javax.swing.GroupLayout(addRekwizytFrame.getContentPane());
         addRekwizytFrame.getContentPane().setLayout(addRekwizytFrameLayout);
         addRekwizytFrameLayout.setHorizontalGroup(
             addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addRekwizytFrameLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addGroup(addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addRekwizytFrameLayout.createSequentialGroup()
-                        .addComponent(checkRekOpt)
-                        .addContainerGap(63, Short.MAX_VALUE))
-                    .addGroup(addRekwizytFrameLayout.createSequentialGroup()
-                        .addGroup(addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(32, 32, 32)
+                        .addGroup(addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkRekOpt)
                             .addGroup(addRekwizytFrameLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton7))
-                            .addGroup(addRekwizytFrameLayout.createSequentialGroup()
-                                .addComponent(wybieranieRekwizytu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(wybieranieRekwizytu, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(NazwaRekwizytu, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dodajRekwizytDoPrzepisuIlosc)
+                                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addRekwizytButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(ilosc, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addRekwizytButton)
-                                    .addGroup(addRekwizytFrameLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(dodajRekwizytDoPrzepisuButton)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(dodajRekwizytDoPrzepisuIlosc, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dodajRekwizytDoPrzepisuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(addRekwizytFrameLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(nazwaRekwizytuLabel)
+                        .addGap(58, 58, 58)
+                        .addComponent(iloscRekwizytowLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addRekwizytFrameLayout.setVerticalGroup(
             addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addRekwizytFrameLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(16, 16, 16)
                 .addComponent(checkRekOpt)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wybieranieRekwizytu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nazwaRekwizytuLabel)
+                    .addComponent(iloscRekwizytowLabel))
+                .addGap(3, 3, 3)
+                .addGroup(addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NazwaRekwizytu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ilosc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addRekwizytButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(wybieranieRekwizytu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dodajRekwizytDoPrzepisuIlosc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addRekwizytFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dodajRekwizytDoPrzepisuIlosc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addRekwizytButton)
                     .addComponent(dodajRekwizytDoPrzepisuButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton7)
-                .addContainerGap())
+                .addGap(17, 17, 17))
         );
 
-        addProductOsAddPrzepisSkladnikFrame.setTitle("Dodaj double");
-        addProductOsAddPrzepisSkladnikFrame.setMinimumSize(new java.awt.Dimension(500, 400));
+        addProductOsAddPrzepisSkladnikFrame.setTitle("Dodaj produkt spożywczy");
+        addProductOsAddPrzepisSkladnikFrame.setMinimumSize(new java.awt.Dimension(420, 403));
+        addProductOsAddPrzepisSkladnikFrame.setResizable(false);
+        this.addProductOsAddPrzepisSkladnikFrame.setLocationRelativeTo(null);
 
-        addProductOsDataWaznosci.setText("osoba");
         addProductOsDataWaznosci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addProductOsDataWaznosciActionPerformed(evt);
             }
         });
 
-        checkRekOpt1.setText("Chce wybrać produkt z listy istniejących produktów");
-        checkRekOpt1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkRekOpt1ActionPerformed(evt);
-            }
-        });
-
-        addProductOsIlosc.setText("osoba");
+        addProductOsIlosc.setMinimumSize(new java.awt.Dimension(110, 27));
         addProductOsIlosc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addProductOsIloscActionPerformed(evt);
@@ -405,8 +419,6 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
 
-        dodajPrzepisdodajSkladnikIlosc.setText("przepis");
-
         dodajPrzepisDodajSkladnikButton.setText("Dodaj Skł");
         dodajPrzepisDodajSkladnikButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -414,67 +426,85 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Podaj ilość");
+
+        podajDateWaznosciLabel.setText("Podaj datę ważności");
+
         javax.swing.GroupLayout addProductOsAddPrzepisSkladnikFrameLayout = new javax.swing.GroupLayout(addProductOsAddPrzepisSkladnikFrame.getContentPane());
         addProductOsAddPrzepisSkladnikFrame.getContentPane().setLayout(addProductOsAddPrzepisSkladnikFrameLayout);
         addProductOsAddPrzepisSkladnikFrameLayout.setHorizontalGroup(
             addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dodawanieProduktJednostka)
-                    .addComponent(checkRekOpt1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton5)
-                .addGap(33, 33, 33)
-                .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dodajPrzepisdodajSkladnikIlosc)
-                    .addComponent(addProductOsIlosc, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addProductOsDataWaznosci, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(9, 9, 9)
                 .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addProduktButton1)
-                    .addComponent(dodajPrzepisDodajSkladnikButton))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
+                            .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(dodawanieProduktJednostka, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap())
+                        .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
+                            .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
+                                    .addGap(23, 23, 23)
+                                    .addComponent(jLabel1))
+                                .addComponent(dodajPrzepisdodajSkladnikIlosc, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                .addComponent(addProductOsIlosc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
+                                    .addComponent(podajDateWaznosciLabel)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(addProductOsDataWaznosci, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(dodajPrzepisDodajSkladnikButton)
+                                        .addComponent(addProduktButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addContainerGap()))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
+                        .addComponent(jButton5)
+                        .addGap(29, 29, 29))))
         );
         addProductOsAddPrzepisSkladnikFrameLayout.setVerticalGroup(
             addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(dodawanieProduktJednostka)
-                .addGap(18, 18, 18)
-                .addComponent(checkRekOpt1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(podajDateWaznosciLabel))
+                .addGap(3, 3, 3)
                 .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addProductOsIlosc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addProductOsDataWaznosci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addProduktButton1)
-                    .addComponent(jButton5))
+                    .addComponent(addProduktButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dodajPrzepisdodajSkladnikIlosc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dodajPrzepisDodajSkladnikButton))
-                .addGap(7, 7, 7)
+                .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dodajPrzepisDodajSkladnikButton)
+                    .addComponent(dodajPrzepisdodajSkladnikIlosc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5))
         );
 
         addProductJednostkaFrame.setTitle("Kreator dodawania nowego produktu z jednostką");
-        addProductJednostkaFrame.setMinimumSize(new java.awt.Dimension(500, 500));
+        addProductJednostkaFrame.setMinimumSize(new java.awt.Dimension(355, 220));
+        addProductJednostkaFrame.setResizable(false);
+        this.addProductJednostkaFrame.setLocationRelativeTo(null);
 
         wybieranieProduktu2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         wybieranieJednostki.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        sugerowanaCena.setText("jTextField2");
+        sugerowanaCena.setMinimumSize(new java.awt.Dimension(70, 27));
+        sugerowanaCena.setPreferredSize(new java.awt.Dimension(70, 27));
 
-        liczbaKalorii.setText("jTextField3");
+        liczbaKalorii.setMinimumSize(new java.awt.Dimension(70, 27));
+        liczbaKalorii.setPreferredSize(new java.awt.Dimension(70, 27));
 
         dodawanieProduktu.setText("Dodaj nowy produkt");
         dodawanieProduktu.addActionListener(new java.awt.event.ActionListener() {
@@ -504,45 +534,87 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Cena");
+
+        jLabel3.setText("Liczba kcal");
+
+        jLabel4.setText("Dla jednej jednostki:");
+
+        jLabel5.setText("Produkt");
+
+        jLabel6.setText("Jednostka");
+
         javax.swing.GroupLayout addProductJednostkaFrameLayout = new javax.swing.GroupLayout(addProductJednostkaFrame.getContentPane());
         addProductJednostkaFrame.getContentPane().setLayout(addProductJednostkaFrameLayout);
         addProductJednostkaFrameLayout.setHorizontalGroup(
             addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(wybieranieProduktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(wybieranieJednostki, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(sugerowanaCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(liczbaKalorii, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductJednostkaFrameLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductJednostkaFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(dodawanieProduktuJedDoBazy)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4))
-                    .addComponent(dodawanieJednostki)
-                    .addComponent(dodawanieProduktu))
-                .addGap(23, 23, 23))
+                        .addComponent(jButton4)
+                        .addGap(23, 23, 23))
+                    .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(wybieranieProduktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel5)))
+                        .addGap(18, 18, 18)
+                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(wybieranieJednostki, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel2)))
+                                .addGap(36, 36, 36))
+                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dodawanieJednostki, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(dodawanieProduktu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                            .addComponent(sugerowanaCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                                    .addGap(16, 16, 16)
+                                                    .addComponent(jLabel3))
+                                                .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(liczbaKalorii, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addContainerGap(19, Short.MAX_VALUE))))))
         );
         addProductJednostkaFrameLayout.setVerticalGroup(
             addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wybieranieProduktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(wybieranieJednostki, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sugerowanaCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(liczbaKalorii, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dodawanieProduktu)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dodawanieJednostki)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dodawanieProduktuJedDoBazy)
                     .addComponent(jButton4))
@@ -550,7 +622,8 @@ public class NewApplication extends javax.swing.JFrame {
         );
 
         wyswietlTwojeRekwizytyFrame.setTitle("Twoje rekwizyty");
-        wyswietlTwojeRekwizytyFrame.setMinimumSize(new java.awt.Dimension(500, 500));
+        wyswietlTwojeRekwizytyFrame.setMinimumSize(new java.awt.Dimension(393, 344));
+        this.wyswietlTwojeRekwizytyFrame.setLocationRelativeTo(null);
 
         zamknijWyswietlTwojeRekwizytyFrame.setText("OK");
         zamknijWyswietlTwojeRekwizytyFrame.addActionListener(new java.awt.event.ActionListener() {
@@ -577,27 +650,27 @@ public class NewApplication extends javax.swing.JFrame {
         wyswietlTwojeRekwizytyFrameLayout.setHorizontalGroup(
             wyswietlTwojeRekwizytyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(wyswietlTwojeRekwizytyFrameLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(wyswietlTwojeRekwizytyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlTwojeRekwizytyFrameLayout.createSequentialGroup()
-                        .addComponent(zamknijWyswietlTwojeRekwizytyFrame)
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlTwojeRekwizytyFrameLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlTwojeRekwizytyFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(zamknijWyswietlTwojeRekwizytyFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         wyswietlTwojeRekwizytyFrameLayout.setVerticalGroup(
             wyswietlTwojeRekwizytyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(wyswietlTwojeRekwizytyFrameLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(zamknijWyswietlTwojeRekwizytyFrame)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(zamknijWyswietlTwojeRekwizytyFrame))
         );
 
         wyswietlTwojeProduktyFrame.setTitle("Wyświetl Twoje produkty");
-        wyswietlTwojeProduktyFrame.setMinimumSize(new java.awt.Dimension(500, 500));
+        wyswietlTwojeProduktyFrame.setMinimumSize(new java.awt.Dimension(388, 357));
+        wyswietlTwojeProduktyFrame.setResizable(false);
+        this.wyswietlTwojeProduktyFrame.setLocationRelativeTo(null);
 
         jButton6.setText("OK");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -623,27 +696,30 @@ public class NewApplication extends javax.swing.JFrame {
         wyswietlTwojeProduktyFrame.getContentPane().setLayout(wyswietlTwojeProduktyFrameLayout);
         wyswietlTwojeProduktyFrameLayout.setHorizontalGroup(
             wyswietlTwojeProduktyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlTwojeProduktyFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
-                .addGap(36, 36, 36))
             .addGroup(wyswietlTwojeProduktyFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlTwojeProduktyFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(34, 34, 34))
         );
         wyswietlTwojeProduktyFrameLayout.setVerticalGroup(
             wyswietlTwojeProduktyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(wyswietlTwojeProduktyFrameLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addContainerGap())
         );
 
         dodajPrzepisFrame.setTitle("Dodaj nowy przepis");
-        dodajPrzepisFrame.setMinimumSize(new java.awt.Dimension(500, 500));
+        dodajPrzepisFrame.setMinimumSize(new java.awt.Dimension(900, 350));
+        dodajPrzepisFrame.setPreferredSize(new java.awt.Dimension(900, 300));
+        dodajPrzepisFrame.setResizable(false);
+        this.dodajPrzepisFrame.setLocationRelativeTo(null);
 
         nazwaPrzepisu.setText("nazwa");
 
@@ -710,6 +786,16 @@ public class NewApplication extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(dodajPrzepisDodajRekwizytTable);
 
+        jLabel7.setText("Nazwa przepisu");
+
+        jLabel8.setText("Czas wykonania");
+
+        jLabel9.setText("L. porcji");
+
+        jLabel10.setText("Trudność wykonania");
+
+        jLabel11.setText("Wykonanie");
+
         javax.swing.GroupLayout dodajPrzepisFrameLayout = new javax.swing.GroupLayout(dodajPrzepisFrame.getContentPane());
         dodajPrzepisFrame.getContentPane().setLayout(dodajPrzepisFrameLayout);
         dodajPrzepisFrameLayout.setHorizontalGroup(
@@ -717,62 +803,80 @@ public class NewApplication extends javax.swing.JFrame {
             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
                 .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(dodajSkladnikiDoPrzepisuButton)
+                        .addGap(180, 180, 180)
+                        .addComponent(dodajRekwizytyDoPrzepisuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
                         .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(dodajSkladnikiDoPrzepisuButton)
-                                .addGap(79, 79, 79)
-                                .addComponent(dodajRekwizytyDoPrzepisuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(13, 13, 13)
+                                .addComponent(nazwaPrzepisu, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18))
-                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(nazwaPrzepisu, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(czasWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(zamknijDodajPrzepisFrame)
-                        .addGap(39, 39, 39)))
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10))
+                            .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                                .addComponent(czasWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dodajPrzepisButton)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                                .addComponent(dodajPrzepisButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(zamknijDodajPrzepisFrame))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dodajPrzepisFrameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel11)
+                        .addGap(58, 58, 58))))
         );
         dodajPrzepisFrameLayout.setVerticalGroup(
             dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nazwaPrzepisu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(czasWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(zamknijDodajPrzepisFrame)
-                        .addComponent(dodajPrzepisButton)))
+                .addGap(10, 10, 10)
+                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                        .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dodajSkladnikiDoPrzepisuButton)
-                            .addComponent(dodajRekwizytyDoPrzepisuButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nazwaPrzepisu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(czasWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dodajRekwizytyDoPrzepisuButton)
+                    .addComponent(dodajSkladnikiDoPrzepisuButton)
+                    .addComponent(dodajPrzepisButton)
+                    .addComponent(zamknijDodajPrzepisFrame))
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -909,7 +1013,7 @@ public class NewApplication extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(105, 105, 105)
                 .addComponent(Komunikat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(379, Short.MAX_VALUE))
+                .addContainerGap(269, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -928,12 +1032,13 @@ public class NewApplication extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(komunikatBledy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Komunikat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -964,15 +1069,11 @@ public class NewApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
-        SetUserJFrame.show();
+        addtUserJFrame.show();
     }//GEN-LAST:event_openMenuItemActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        SetUserJFrame.dispose();
+        addtUserJFrame.dispose();
         Komunikat.setText("Zamknieto okno");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -998,7 +1099,8 @@ public class NewApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void dodajRekwizytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajRekwizytActionPerformed
-       this.dodajRekwizytDoPrzepisuIlosc.hide();
+        this.checkRekOpt.setSelected(false);
+        this.dodajRekwizytDoPrzepisuIlosc.hide();
        this.dodajRekwizytDoPrzepisuButton.hide();
        //this.NazwaRekwizytu.show();
        this.ilosc.show();
@@ -1095,6 +1197,7 @@ public class NewApplication extends javax.swing.JFrame {
     private void dodajProduktActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajProduktActionPerformed
         
         this.addProductOsIlosc.show();
+        this.podajDateWaznosciLabel.show();
         this.addProductOsDataWaznosci.show();
         this.addProduktButton1.show();
         this.dodajPrzepisdodajSkladnikIlosc.hide();
@@ -1208,10 +1311,6 @@ public class NewApplication extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addProductOsIloscActionPerformed
 
-    private void checkRekOpt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkRekOpt1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkRekOpt1ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         addProductJednostkaFrame.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1271,6 +1370,7 @@ public class NewApplication extends javax.swing.JFrame {
 
     private void dodajSkladnikiDoPrzepisuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajSkladnikiDoPrzepisuButtonActionPerformed
         this.addProductOsIlosc.hide();
+        this.podajDateWaznosciLabel.hide();
         this.addProductOsDataWaznosci.hide();
         this.addProduktButton1.hide();
         this.dodajPrzepisdodajSkladnikIlosc.show();
@@ -1279,13 +1379,16 @@ public class NewApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dodajSkladnikiDoPrzepisuButtonActionPerformed
 
     private void dodajRekwizytyDoPrzepisuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajRekwizytyDoPrzepisuButtonActionPerformed
+        this.checkRekOpt.setSelected(false);
         if(this.checkRekOpt.isSelected()){
             this.wybieranieRekwizytu.show();
             this.NazwaRekwizytu.hide();
+            this.nazwaRekwizytuLabel.hide();
         }
         else{
             this.wybieranieRekwizytu.hide();
             this.NazwaRekwizytu.show();
+            this.nazwaRekwizytuLabel.show();
         }
         this.dodajRekwizytDoPrzepisuIlosc.show();
        this.dodajRekwizytDoPrzepisuButton.show();
@@ -1428,7 +1531,6 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JTextField PodajImie;
     private javax.swing.JTextField PodajNazwisko;
     private javax.swing.JTextField PodajNick;
-    private javax.swing.JFrame SetUserJFrame;
     private javax.swing.JFrame addProductJednostkaFrame;
     private javax.swing.JFrame addProductOsAddPrzepisSkladnikFrame;
     private javax.swing.JTextField addProductOsDataWaznosci;
@@ -1436,8 +1538,11 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JButton addProduktButton1;
     private javax.swing.JButton addRekwizytButton;
     private javax.swing.JFrame addRekwizytFrame;
+    private javax.swing.JLabel addUserJFramePodajImieLabel;
+    private javax.swing.JLabel addUserJFramePodajNazwiskoLabel;
+    private javax.swing.JLabel addUserJFramePodajNickLabel;
+    private javax.swing.JFrame addtUserJFrame;
     private javax.swing.JCheckBox checkRekOpt;
-    private javax.swing.JCheckBox checkRekOpt1;
     private javax.swing.JTextField czasWykonania;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JMenuItem dodajProdukt;
@@ -1460,6 +1565,7 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JTextField ilosc;
+    private javax.swing.JLabel iloscRekwizytowLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1467,7 +1573,17 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1475,15 +1591,16 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField komunikatBledy;
     private javax.swing.JTextField liczbaKalorii;
     private javax.swing.JTextField liczbaPorcji;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JTextField nazwaPrzepisu;
+    private javax.swing.JLabel nazwaRekwizytuLabel;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JTextPane opisWykonania;
     private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JLabel podajDateWaznosciLabel;
     private javax.swing.JMenu przepisykulinarneMenu;
     private javax.swing.JMenu rekwizytyOsoby;
     private javax.swing.JMenuItem saveAsMenuItem;
