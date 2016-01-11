@@ -3,23 +3,9 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="0,0" last-zoom="1"
+<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="4,0" last-zoom="0.85"
 	 default-schema="public" default-owner="postgres">
-<role name="userBD"
-      inherit="true"
-      login="true"
-      encrypted="true"
-      password="********">
-</role>
-
-<role name="myuser"
-      inherit="true"
-      login="true"
-      encrypted="true"
-      password="********">
-</role>
-
-<database name="BazaPGModeler_DOBRA_WERSJA" encoding="UTF8" lc-collate="pl_PL" lc-ctype="pl_PL">
+<database name="BazaPGModeler_2">
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 </database>
@@ -38,7 +24,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="przepisy_kulinarne">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="50" y="50"/>
+	<position x="934" y="201"/>
 	<column name="id_przepis" not-null="true" sequence="public.przepisy_kulinarne_id_przepis_seq">
 		<type name="integer"/>
 	</column>
@@ -77,7 +63,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="składniki_przepisu">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="461.672" y="50"/>
+	<position x="796.672" y="38"/>
 	<column name="id_produkt_jednostka" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -103,7 +89,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="produkty_spozywcze_jednostka">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="789.641" y="50"/>
+	<position x="531.641" y="205"/>
 	<column name="id_produkt_jednostka" not-null="true" sequence="public.produkty_spozywcze_jednostka_id_produkt_jednostka_seq">
 		<type name="integer"/>
 	</column>
@@ -138,7 +124,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1198.38" y="50"/>
+	<position x="1137.38" y="493"/>
 	<column name="id_osoba" not-null="true" sequence="public.osoby_id_osoba_seq">
 		<type name="integer"/>
 	</column>
@@ -170,7 +156,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="kategorie_przepisow">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1542.44" y="50"/>
+	<position x="1521.44" y="85"/>
 	<column name="id_kategorie_przepisow" not-null="true" sequence="public.kategorie_przepisow_id_kategorie_przepisow_seq">
 		<type name="integer"/>
 	</column>
@@ -185,7 +171,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="many_Kategorie_przepisów_has_many_Przepisy_kulinarne">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="50" y="259.4"/>
+	<position x="75" y="263.4"/>
 	<column name="id_kategorie_przepisow_kategorie_przepisow" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -197,7 +183,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="zbiory_rekwizytów">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="539.397" y="259.4"/>
+	<position x="1217.4" y="51.4"/>
 	<column name="id_przepis" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -215,7 +201,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="rekwizyt_osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="800.038" y="259.4"/>
+	<position x="1488.04" y="354.4"/>
 	<column name="wlasciciel" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -233,7 +219,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="ulubione">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1060.68" y="259.4"/>
+	<position x="662.68" y="349.4"/>
 	<column name="id_osoba" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -259,7 +245,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="rekwizyt">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1312.02" y="259.4"/>
+	<position x="1579.02" y="225.4"/>
 	<column name="id_rekwizyt" not-null="true" sequence="public.rekwizyt_id_rekwizyt_seq">
 		<type name="integer"/>
 	</column>
@@ -277,7 +263,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="przedmiot_osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="50" y="378.8"/>
+	<position x="608" y="449.8"/>
 	<column name="ilosc">
 		<type name="integer"/>
 	</column>
@@ -306,7 +292,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="jednostki_miary">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="333.391" y="378.8"/>
+	<position x="66.391" y="96.8"/>
 	<column name="id_jednsotki" not-null="true" sequence="public.jednostki_miary_id_jednsotki_seq">
 		<type name="integer"/>
 	</column>
@@ -332,7 +318,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="produkt_spozywczy">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="700.703" y="378.8"/>
+	<position x="170.703" y="440.8"/>
 	<column name="id_produkt" not-null="true" sequence="public.produkt_spozywczy_id_produkt_seq">
 		<type name="integer"/>
 	</column>
@@ -409,7 +395,7 @@ end;
 <view name="pelny_produkt_jednostka">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1031.36" y="378.8"/>
+	<position x="77.5365" y="576.918"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_produkt_jednostka,
     b.nazwa_prod,
@@ -425,7 +411,7 @@ end;
 <view name="rekwizyty_all_osob">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1300.04" y="378.8"/>
+	<position x="81.5106" y="639.271"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_osoba,
     a.imie,
@@ -462,7 +448,7 @@ end;
 	<role name="postgres"/>
 	<language name="sql" sql-disabled="true"/>
 	<return-type>
-	<type name="public.nazwa_ilosc" precision="0"/>
+	<type name="public.nazwa_ilosc" precision="32706"/>
 	</return-type>
 	<parameter name="_param1">
 		<type name="integer"/>
@@ -475,7 +461,7 @@ where a.id_osoba=$1;]]></definition>
 <view name="pelne_produkty_wlascicieli">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="50" y="513.2"/>
+	<position x="75" y="517.2"/>
 	<reference>
 		<expression><![CDATA[ SELECT b.wlasciciel,
     a.nazwa_prod,
