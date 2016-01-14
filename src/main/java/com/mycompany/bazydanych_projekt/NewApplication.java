@@ -38,7 +38,7 @@ public class NewApplication extends javax.swing.JFrame {
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String dane[]={"id_produkt_jednostka","nazwa_jedn","nazwa_prod","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
+        String dane[]={"id_produkt","jednostka_miary","nazwa_jedn","nazwa_prod","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
         TableModel model = null;
         try {
             model = new SkladnikiJednostkaTableModel(psql.getRows("pelny_produkt_jednostka", dane),dane);
@@ -52,9 +52,9 @@ public class NewApplication extends javax.swing.JFrame {
         jTable1.setSelectionModel(new ClassListSelectionModel());
         jTable1.repaint();
         
-        String dane2[]={"id_produkt_jednostka","Nazwa","Ilość","Jednostka","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
+        String dane2[]={"id_produkt","jednostka_miary","Nazwa","Ilość","Jednostka","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
         TableModel model2 = null;
-        Object[][] obj=new Object[0][6];
+        Object[][] obj=new Object[0][7];
         model2 = new SkladnikiJednostkaTableModel(obj,dane2);
         this.dodajPrzepisdodajSkladnikiTable.setModel(model2);
         this.dodajPrzepisdodajSkladnikiTable.setSelectionModel(new ClassListSelectionModel());
@@ -580,17 +580,16 @@ public class NewApplication extends javax.swing.JFrame {
                                 .addGap(22, 22, 22)
                                 .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(dodawanieJednostki, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(dodawanieProduktu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                                            .addComponent(sugerowanaCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                                                    .addGap(16, 16, 16)
-                                                    .addComponent(jLabel3))
-                                                .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(liczbaKalorii, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(dodawanieProduktu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductJednostkaFrameLayout.createSequentialGroup()
+                                        .addComponent(sugerowanaCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                                .addGap(16, 16, 16)
+                                                .addComponent(jLabel3))
+                                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(liczbaKalorii, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addContainerGap(19, Short.MAX_VALUE))))))
         );
         addProductJednostkaFrameLayout.setVerticalGroup(
@@ -1202,7 +1201,7 @@ public class NewApplication extends javax.swing.JFrame {
         this.addProduktButton1.show();
         this.dodajPrzepisdodajSkladnikIlosc.hide();
         this.dodajPrzepisDodajSkladnikButton.hide();
-        String dane[]={"id_produkt_jednostka","nazwa_jedn","nazwa_prod","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
+        String dane[]={"id_produkt","jednostka_miary","nazwa_jedn","nazwa_prod","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
         TableModel model = null;
         try {
             model = new SkladnikiJednostkaTableModel(psql.getRows("pelny_produkt_jednostka", dane),dane);
@@ -1266,7 +1265,7 @@ public class NewApplication extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        String dane[]={"id_produkt_jednostka","nazwa_jedn","nazwa_prod","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
+        String dane[]={"id_produkt","jednostka_miary","nazwa_jedn","nazwa_prod","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
         TableModel model = null;
         try {
             model = new SkladnikiJednostkaTableModel(psql.getRows("pelny_produkt_jednostka", dane),dane);
@@ -1287,8 +1286,12 @@ public class NewApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dodawanieProduktJednostkaActionPerformed
 
     private void addProduktButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProduktButton1ActionPerformed
-        String atr[]={"ilosc","wlasciciel","id_produkt","termin_waznosci"};
-        String val[]={addProductOsIlosc.getText(),id_user,jTable1.getModel().getValueAt(jTable1.getSelectedRow(),0).toString(),this.addProductOsDataWaznosci.getText()};
+        String atr[]={"ilosc","wlasciciel","id_produkt","id_jednostka","termin_waznosci"};
+        String val[]={addProductOsIlosc.getText(),
+            id_user,
+            jTable1.getModel().getValueAt(jTable1.getSelectedRow(),0).toString(),
+            jTable1.getModel().getValueAt(jTable1.getSelectedRow(),1).toString(),
+            this.addProductOsDataWaznosci.getText()};
         try {
             psql.dodajDane("przedmiot_osoby", atr, val);
         } catch (Exception ex) {
@@ -1411,6 +1414,7 @@ public class NewApplication extends javax.swing.JFrame {
                 ComboIT item=new ComboIT();
                 item=(ComboIT)wybieranieRekwizytu.getSelectedItem();
                 Object dan[]={item.getIndex(),item.toString(),this.dodajRekwizytDoPrzepisuIlosc.getText()};
+                if(mod.isInColumn(0,dan[0]))    return;
                 mod.addRow(dan);
                 mod.fireTableDataChanged();
                  this.dodajPrzepisDodajRekwizytTable.setModel(mod);
@@ -1445,6 +1449,7 @@ public class NewApplication extends javax.swing.JFrame {
             //String val2[]={id_user,id_rek[0].toString(),ilosc.getText()};            
             try {
                 Object dan[]={id_rek[0][0],id_rek[0][1],this.dodajRekwizytDoPrzepisuIlosc.getText()};
+                if(mod.isInColumn(0,dan[0]))    return;
                 mod.addRow(dan);
                 mod.fireTableDataChanged();
                  this.dodajPrzepisDodajRekwizytTable.setModel(mod);
@@ -1467,15 +1472,17 @@ public class NewApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dodajRekwizytDoPrzepisuButtonActionPerformed
 
     private void dodajPrzepisDodajSkladnikButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajPrzepisDodajSkladnikButtonActionPerformed
-//        String dane2[]={"id_produkt_jednostka","Nazwa","Jednostka","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
         SkladnikiJednostkaTableModel mod= (SkladnikiJednostkaTableModel)this.dodajPrzepisdodajSkladnikiTable.getModel();
         Object dan[]={this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0),
             this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1),
+            this.jTable1.getValueAt(this.jTable1.getSelectedRow(),3),
             this.dodajPrzepisdodajSkladnikIlosc.getText(),
             this.jTable1.getValueAt(this.jTable1.getSelectedRow(),2),
-            this.jTable1.getValueAt(this.jTable1.getSelectedRow(),3),
-            this.jTable1.getValueAt(this.jTable1.getSelectedRow(),4)
+            this.jTable1.getValueAt(this.jTable1.getSelectedRow(),4),
+            this.jTable1.getValueAt(this.jTable1.getSelectedRow(),5)
             };
+                if(mod.isInColumn(0, this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0)) &&
+                        mod.isInColumn(1, this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1))) return;
                 mod.addRow(dan);
                 mod.fireTableDataChanged();
                  this.dodajPrzepisdodajSkladnikiTable.setModel(mod);
@@ -1484,6 +1491,7 @@ public class NewApplication extends javax.swing.JFrame {
 
     private void dodajPrzepisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajPrzepisButtonActionPerformed
         // funkcja składowana :-) która zwraca serial id
+        //najpierw dodajemy do tabel skladniki przepisu i rekwizyty przepisu
     }//GEN-LAST:event_dodajPrzepisButtonActionPerformed
 
     /**

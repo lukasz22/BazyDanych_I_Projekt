@@ -118,7 +118,6 @@ public class PostgreSQLJDBCDriverTest {
             }
             tabobj= data.toArray(new Object[data.size()][atrybuty.length]);
             System.out.println(tabobj.toString());
-            return tabobj;
         } catch (SQLException ex) {
             //Logger.getLogger(PostgreSQLJDBCDriverTest.class.getName()).log(Level.SEVERE, null, ex);
             throw new SQLException(ex);

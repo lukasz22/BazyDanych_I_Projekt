@@ -61,6 +61,14 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
             this.data=dane;
         }
     } 
+    public boolean isInColumn(int indexOfColumn, Object val){
+        for(int i=0;i< this.getRowCount();i++){
+                if(data[i][indexOfColumn].equals(val)){
+                    return true;
+                }
+            }
+        return false;
+    }
     Object[][] data;
     String[] columnnames;
 }
