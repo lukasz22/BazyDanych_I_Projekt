@@ -68,13 +68,19 @@ public class NewApplication extends javax.swing.JFrame {
         this.dodajPrzepisDodajRekwizytTable.setSelectionModel(new ClassListSelectionModel());
         this.dodajPrzepisDodajRekwizytTable.repaint();
         SkladnikiJednostkaTableModel mod= (SkladnikiJednostkaTableModel)this.dodajPrzepisDodajRekwizytTable.getModel();;
-        Object[] dan={"111","Krzeslo","5"};
-        mod.addRow(dan);
+       // Object[] dan={"111","Krzeslo","5"};
+       // mod.addRow(dan);
         mod.fireTableDataChanged();
         this.dodajPrzepisDodajRekwizytTable.setModel(mod);
         this.dodajPrzepisDodajRekwizytTable.repaint();
-//        dodajPrzepisDodajRekwizytTable
         
+        String dane4[]={"id_przepis","Nazwa","Autor"};
+        TableModel model4 = null;
+        Object[][] obj4=new Object[0][3];
+        model4 = new SkladnikiJednostkaTableModel(obj4,dane4);
+        this.wyswietlPrzepisyTable.setModel(model4);
+        this.wyswietlPrzepisyTable.setSelectionModel(new ClassListSelectionModel());
+        this.wyswietlPrzepisyTable.repaint();
     }
 
     /**
@@ -160,6 +166,13 @@ public class NewApplication extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        wyswietlPrzepisyFrame = new javax.swing.JFrame();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        wyswietlPrzepisyTable = new javax.swing.JTable();
+        wyswietlPrzepisyZamknij = new javax.swing.JButton();
+        wyswietlPrzepisyobejrzyjPrzepisButton = new javax.swing.JButton();
+        wyswietlPrzepisyUsunPrzepisButton = new javax.swing.JButton();
+        wyswietlMojePrzepisyCheckButton = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Komunikat = new javax.swing.JTextField();
@@ -720,13 +733,21 @@ public class NewApplication extends javax.swing.JFrame {
         dodajPrzepisFrame.setResizable(false);
         this.dodajPrzepisFrame.setLocationRelativeTo(null);
 
-        nazwaPrzepisu.setText("nazwa");
+        czasWykonania.setText("22");
 
-        czasWykonania.setText("czas wykonania");
+        liczbaPorcji.setText("211");
+        liczbaPorcji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                liczbaPorcjiActionPerformed(evt);
+            }
+        });
 
-        liczbaPorcji.setText("liczba porcji");
-
-        trudnoscWykonania.setText("trudnosc wykonania");
+        trudnoscWykonania.setText("123");
+        trudnoscWykonania.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trudnoscWykonaniaActionPerformed(evt);
+            }
+        });
 
         opisWykonania.setText("Wykonanie");
         jScrollPane4.setViewportView(opisWykonania);
@@ -800,7 +821,7 @@ public class NewApplication extends javax.swing.JFrame {
         dodajPrzepisFrameLayout.setHorizontalGroup(
             dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -821,18 +842,19 @@ public class NewApplication extends javax.swing.JFrame {
                                 .addComponent(jLabel7)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(czasWykonania)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
+                                .addGap(28, 28, 28)
+                                .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
                                 .addGap(46, 46, 46)
                                 .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10))
-                            .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                                .addComponent(czasWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel10)))))
                 .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
@@ -875,6 +897,86 @@ public class NewApplication extends javax.swing.JFrame {
                     .addComponent(dodajSkladnikiDoPrzepisuButton)
                     .addComponent(dodajPrzepisButton)
                     .addComponent(zamknijDodajPrzepisFrame))
+                .addContainerGap())
+        );
+
+        wyswietlPrzepisyFrame.setMinimumSize(new java.awt.Dimension(500, 300));
+
+        wyswietlPrzepisyTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(wyswietlPrzepisyTable);
+
+        wyswietlPrzepisyZamknij.setText("Zamknij");
+        wyswietlPrzepisyZamknij.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wyswietlPrzepisyZamknijActionPerformed(evt);
+            }
+        });
+
+        wyswietlPrzepisyobejrzyjPrzepisButton.setText("Obejrzyj");
+        wyswietlPrzepisyobejrzyjPrzepisButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wyswietlPrzepisyobejrzyjPrzepisButtonActionPerformed(evt);
+            }
+        });
+
+        wyswietlPrzepisyUsunPrzepisButton.setText("Usuń");
+        wyswietlPrzepisyUsunPrzepisButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wyswietlPrzepisyUsunPrzepisButtonActionPerformed(evt);
+            }
+        });
+
+        wyswietlMojePrzepisyCheckButton.setText("Chcę usuwać, edytować, oglądać tylko swoje przepisy");
+        wyswietlMojePrzepisyCheckButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wyswietlMojePrzepisyCheckButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout wyswietlPrzepisyFrameLayout = new javax.swing.GroupLayout(wyswietlPrzepisyFrame.getContentPane());
+        wyswietlPrzepisyFrame.getContentPane().setLayout(wyswietlPrzepisyFrameLayout);
+        wyswietlPrzepisyFrameLayout.setHorizontalGroup(
+            wyswietlPrzepisyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(wyswietlPrzepisyFrameLayout.createSequentialGroup()
+                .addGroup(wyswietlPrzepisyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(wyswietlPrzepisyFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(wyswietlPrzepisyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(wyswietlPrzepisyZamknij)
+                            .addGroup(wyswietlPrzepisyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(wyswietlPrzepisyUsunPrzepisButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(wyswietlPrzepisyobejrzyjPrzepisButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(wyswietlPrzepisyFrameLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(wyswietlMojePrzepisyCheckButton)))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        wyswietlPrzepisyFrameLayout.setVerticalGroup(
+            wyswietlPrzepisyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlPrzepisyFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(wyswietlMojePrzepisyCheckButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlPrzepisyFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(wyswietlPrzepisyUsunPrzepisButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(wyswietlPrzepisyobejrzyjPrzepisButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(wyswietlPrzepisyZamknij)
                 .addContainerGap())
         );
 
@@ -999,6 +1101,11 @@ public class NewApplication extends javax.swing.JFrame {
         przepisykulinarneMenu.add(dodajPrzepisOpen);
 
         wyswietlPrzepisy.setText("Wyświetl przepisy");
+        wyswietlPrzepisy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wyswietlPrzepisyActionPerformed(evt);
+            }
+        });
         przepisykulinarneMenu.add(wyswietlPrzepisy);
 
         menuBar.add(przepisykulinarneMenu);
@@ -1368,6 +1475,10 @@ public class NewApplication extends javax.swing.JFrame {
 
     private void dodajPrzepisOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajPrzepisOpenActionPerformed
         //!!!!
+        
+        this.dodajPrzepisButton.setVisible(true);
+        this.dodajPrzepisFrameClear();
+        this.dodajPrzepisFrameDisableOrEnable(true);
         this.dodajPrzepisFrame.show();
     }//GEN-LAST:event_dodajPrzepisOpenActionPerformed
 
@@ -1490,9 +1601,162 @@ public class NewApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_dodajPrzepisDodajSkladnikButtonActionPerformed
 
     private void dodajPrzepisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajPrzepisButtonActionPerformed
-        // funkcja składowana :-) która zwraca serial id
-        //najpierw dodajemy do tabel skladniki przepisu i rekwizyty przepisu
+        try {
+            //najpierw dodajemu przepis
+            String atrybuty[]={nazwaPrzepisu.getText(),this.opisWykonania.getText(),czasWykonania.getText(), this.id_user,
+                this.liczbaPorcji.getText(),
+                this.trudnoscWykonania.getText()};
+            //System.out.println("Naszeid: "+psql.dodajDaneZfunkcji("przepisy_kulinarne_wstaw_function",atrybuty));
+            String id_przepisu=psql.dodajDaneZfunkcji("przepisy_kulinarne_wstaw_function",atrybuty);
+           // dodajPrzepisdodajSkladnikiTable
+            for(int i=0;i<this.dodajPrzepisdodajSkladnikiTable.getModel().getRowCount();i++){
+                String[] atr={"id_produkt","id_jednostka","id_przepis","ilosc"};
+                String[] values={
+                this.dodajPrzepisdodajSkladnikiTable.getModel().getValueAt(i, 0).toString(),
+                this.dodajPrzepisdodajSkladnikiTable.getModel().getValueAt(i, 1).toString(),
+                id_przepisu,
+                this.dodajPrzepisdodajSkladnikiTable.getModel().getValueAt(i, 3).toString()
+                };
+                System.out.println("id_przepisu: "+ id_przepisu);
+                try{
+                    psql.dodajDane("skladniki_przepisu", atr, values);
+                }catch(Exception ex){
+                    System.out.println(ex.getMessage());
+                }
+                
+                
+            }
+            for(int i=0;i<this.dodajPrzepisDodajRekwizytTable.getModel().getRowCount();i++){
+                String[] atr={"id_przepis","id_rekwizyt","ilosc"};
+                String[] values={
+                id_przepisu,
+                this.dodajPrzepisDodajRekwizytTable.getModel().getValueAt(i, 0).toString(),
+                this.dodajPrzepisDodajRekwizytTable.getModel().getValueAt(i, 2).toString()
+                };
+                try{
+                    psql.dodajDane("zbiory_rekwizytow", atr, values);
+                }catch(Exception ex){
+                    refreshWyswietlPrzepisyTable("przepis_autor");
+                    System.out.println(ex.getMessage());
+                }
+            }
+            // funkcja składowana :-) która zwraca serial id
+            //najpierw dodajemy do tabel skladniki przepisu i rekwizyty przepisu
+            //to_char timestamp
+        } catch (Exception ex) {
+            Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_dodajPrzepisButtonActionPerformed
+
+    private void trudnoscWykonaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trudnoscWykonaniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trudnoscWykonaniaActionPerformed
+
+    private void liczbaPorcjiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liczbaPorcjiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_liczbaPorcjiActionPerformed
+
+    private void wyswietlPrzepisyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wyswietlPrzepisyActionPerformed
+        this.wyswietlMojePrzepisyCheckButton.setSelected(false);
+        this.wyswietlPrzepisyUsunPrzepisButton.setEnabled(false);
+        this.wyswietlPrzepisyUsunPrzepisButton.setEnabled(false);
+        refreshWyswietlPrzepisyTable("przepis_autor");
+        wyswietlPrzepisyFrame.show();
+        
+    }//GEN-LAST:event_wyswietlPrzepisyActionPerformed
+
+    private void wyswietlPrzepisyZamknijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wyswietlPrzepisyZamknijActionPerformed
+        wyswietlPrzepisyFrame.hide();
+    }//GEN-LAST:event_wyswietlPrzepisyZamknijActionPerformed
+
+    private void wyswietlMojePrzepisyCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wyswietlMojePrzepisyCheckButtonActionPerformed
+        refreshWyswietlPrzepisyTable("przepis_autor");
+        if(this.wyswietlMojePrzepisyCheckButton.isSelected()){
+            this.wyswietlPrzepisyUsunPrzepisButton.setEnabled(true);
+            this.wyswietlPrzepisyUsunPrzepisButton.setEnabled(true);
+        }
+        else{
+            this.wyswietlPrzepisyUsunPrzepisButton.setEnabled(false);
+            this.wyswietlPrzepisyUsunPrzepisButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_wyswietlMojePrzepisyCheckButtonActionPerformed
+
+    private void wyswietlPrzepisyUsunPrzepisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wyswietlPrzepisyUsunPrzepisButtonActionPerformed
+        if(this.wyswietlPrzepisyTable.getSelectedRowCount()>=0){
+            try {
+                psql.usunRekord("przepisy_kulinarne "
+                        + "where id_przepis="+this.wyswietlPrzepisyTable.getModel()
+                                .getValueAt(this.wyswietlPrzepisyTable.getSelectedRow(), 0));
+                refreshWyswietlPrzepisyTable("przepis_autor");
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        this.refreshWyswietlPrzepisyTable("przepis_autor");
+    }//GEN-LAST:event_wyswietlPrzepisyUsunPrzepisButtonActionPerformed
+
+    private void wyswietlPrzepisyobejrzyjPrzepisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wyswietlPrzepisyobejrzyjPrzepisButtonActionPerformed
+        
+        if(this.wyswietlPrzepisyTable.getSelectedRowCount()==1){
+            String zaznaczone_id=this.wyswietlPrzepisyTable.getModel()
+                    .getValueAt(this.wyswietlPrzepisyTable.getSelectedRow(), 0).toString();
+            this.dodajPrzepisFrame.show();
+            this.dodajPrzepisButton.setVisible(false);
+            this.dodajPrzepisFrameClear();
+            this.dodajPrzepisFrameDisableOrEnable(false);
+            String[] dane={"nazwa","wykonanie","czas_wykonania","data_dodania","liczba_porcji","trudnosc_wykonania"};
+            Object[][] selectionValues = null;
+            try {
+                selectionValues = psql.getRows("przepisy_kulinarne where id_przepis="+zaznaczone_id,dane);
+                //wybieranieRekwizytu.setActionCommand(selectionValues.toString());
+            } catch (SQLException ex) {
+                //Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.nazwaPrzepisu.setText(selectionValues[0][0].toString());
+            this.opisWykonania.setText(selectionValues[0][1].toString());
+            this.liczbaPorcji.setText(selectionValues[0][4].toString());
+            this.trudnoscWykonania.setText(selectionValues[0][5].toString());
+            this.czasWykonania.setText(selectionValues[0][2].toString());
+            //pelny_produkt_jednostka
+            String[] dane2={
+                "id_przepis",
+                "id_produkt",
+                "jednostka_miary",
+                "nazwa_prod",
+                "ilosc",
+                "nazwa_jedn",
+                "sugerowana_cena_za_1_jednostke",
+                "liczba_kcal_w_1_jednostce"
+            };
+            selectionValues = null;
+            try {
+                selectionValues = psql.getRows("pelny_skladnik_przepisu where id_przepis="+zaznaczone_id,dane2);
+                //wybieranieRekwizytu.setActionCommand(selectionValues.toString());
+            } catch (SQLException ex) {
+                //Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //this.dodajPrzepisdodajSkladnikiTable.setModel();
+            SkladnikiJednostkaTableModel mod =new SkladnikiJednostkaTableModel(selectionValues,dane2);
+            mod.fireTableDataChanged();
+            this.dodajPrzepisdodajSkladnikiTable.setModel(mod);
+            String[] dane3={
+            "id_przepis",
+            "nazwa",
+            "ilosc"};
+            selectionValues = null;
+            try {
+                selectionValues = psql.getRows("pelny_rekwizyt_przepisu where id_przepis="+zaznaczone_id,dane3);
+                //wybieranieRekwizytu.setActionCommand(selectionValues.toString());
+            } catch (SQLException ex) {
+                //Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //this.dodajPrzepisdodajSkladnikiTable.setModel();
+            mod =new SkladnikiJednostkaTableModel(selectionValues,dane3);
+            mod.fireTableDataChanged();
+            this.dodajPrzepisDodajRekwizytTable.setModel(mod);
+            
+        }
+    }//GEN-LAST:event_wyswietlPrzepisyobejrzyjPrzepisButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1598,6 +1862,7 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField komunikatBledy;
     private javax.swing.JTextField liczbaKalorii;
@@ -1618,7 +1883,13 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JComboBox wybieranieJednostki;
     private javax.swing.JComboBox wybieranieProduktu2;
     private javax.swing.JComboBox wybieranieRekwizytu;
+    private javax.swing.JCheckBox wyswietlMojePrzepisyCheckButton;
     private javax.swing.JMenuItem wyswietlPrzepisy;
+    private javax.swing.JFrame wyswietlPrzepisyFrame;
+    private javax.swing.JTable wyswietlPrzepisyTable;
+    private javax.swing.JButton wyswietlPrzepisyUsunPrzepisButton;
+    private javax.swing.JButton wyswietlPrzepisyZamknij;
+    private javax.swing.JButton wyswietlPrzepisyobejrzyjPrzepisButton;
     private javax.swing.JFrame wyswietlTwojeProduktyFrame;
     private javax.swing.JMenuItem wyswietlTwojeProduktyOpen;
     private javax.swing.JTable wyswietlTwojeProduktyTable;
@@ -1645,5 +1916,62 @@ public class NewApplication extends javax.swing.JFrame {
        //wybieranieRekwizytu.setModel(new DefaultComboBoxModel(selectionValues));
        //wybieranieRekwizytu.setVisible(false);
        box.repaint();
+    } 
+    private void refreshWyswietlPrzepisyTable(String tabelaWar){
+        String arg=new String("");
+        if(this.wyswietlMojePrzepisyCheckButton.isSelected())   arg+=" where "+tabelaWar+".id_osoba_dodajaca="+this.id_user; 
+        String dane[]={"id_przepis","nazwa","nick"};
+        SkladnikiJednostkaTableModel model = null;
+        try {
+            model = new SkladnikiJednostkaTableModel(psql.getRows(tabelaWar+arg, dane),dane);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.fireTableDataChanged();
+        this.wyswietlPrzepisyTable.setModel(model);
+        this.wyswietlPrzepisyTable.setSelectionModel(new ClassListSelectionModel());
+        
+    }
+    public void dodajPrzepisFrameClear(){
+        this.nazwaPrzepisu.setText("");
+        this.opisWykonania.setText("");
+        this.liczbaPorcji.setText("");
+        this.trudnoscWykonania.setText("");
+        this.czasWykonania.setText("");
+        SkladnikiJednostkaTableModel dm = 
+                (SkladnikiJednostkaTableModel) this.dodajPrzepisdodajSkladnikiTable.getModel();
+            int rowCount = dodajPrzepisdodajSkladnikiTable.getRowCount();
+            //Remove rows one by one from the end of the table
+            for (int i = rowCount - 1; i >= 0; i--) {
+                dm.removeRow(i);
+                
+            }
+            dm.fireTableDataChanged();
+        this.dodajPrzepisdodajSkladnikiTable.setModel(dm);
+        //dodajPrzepisdodajSkladnikiTable.repaint();
+        SkladnikiJednostkaTableModel dm2 = 
+                (SkladnikiJednostkaTableModel) this.dodajPrzepisDodajRekwizytTable.getModel();
+            int rowCount2 = this.dodajPrzepisDodajRekwizytTable.getRowCount();
+            //Remove rows one by one from the end of the table
+            for (int i = rowCount2 - 1; i >= 0; i--) {
+                dm2.removeRow(i);
+                
+            }
+            dm2.fireTableDataChanged();
+        this.dodajPrzepisDodajRekwizytTable.setModel(dm2);
+        //dodajPrzepisDodajRekwizytTable.repaint();
+        
+        
+            
+        
+    }
+    public void dodajPrzepisFrameDisableOrEnable(boolean flag){
+        this.nazwaPrzepisu.setEnabled(flag);
+        this.opisWykonania.setEnabled(flag);
+        this.liczbaPorcji.setEnabled(flag);
+        this.trudnoscWykonania.setEnabled(flag);
+        this.czasWykonania.setEnabled(flag);
+        this.dodajSkladnikiDoPrzepisuButton.setVisible(flag);
+        this.dodajRekwizytyDoPrzepisuButton.setVisible(flag);
     }
 } 

@@ -185,31 +185,54 @@ public class PostgreSQLJDBCDriverTest {
         throw new Exception("Rekord został dodany");
     }
     
-    public void dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws Exception{
+public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws Exception{
+    try {
+  //Connection conn = DriverManager.getConnection(url+baza, login, password);
+        Statement st = conn.createStatement();
+        String val=new String("");
+        int ileval=0;
+        while(ileval<parametry.length){
+            if(ileval!=0) val=val+",";
+            val=val+"\'"+parametry[ileval]+"\'";
+            ileval++;
+        }
+        String str=null;
+        try {
+            ResultSet rs=st.executeQuery("Select answer from "+nazwafunkcji+"("+val+") as answer");
+            rs.next();
+            str=rs.getString("answer");
+            System.out.println("DODANO REKORD ,ID MAMY?");
+            //throw new Exception("Coś poszło nie tak");
+            return str;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            throw new Exception("Coś poszło nie tak");
+        }
+        //throw new Exception("Rekord został dodany");
+    } catch (SQLException e) {
+        System.out.println("Uwaga! Mamy problemy z połączeniem!");
+    }
+        return null;
+    
+}
+    
+    public void usunRekord(String str) throws Exception{
         try {
   //Connection conn = DriverManager.getConnection(url+baza, login, password);
   Statement st = conn.createStatement();
-  String val=new String("");
-  int ileval=0;
-  while(ileval<parametry.length){
-      if(ileval!=0) val=val+",";
-      val=val+"\'"+parametry[ileval]+"\'";
-      ileval++;
-  }
+  
   
   try {
-   st.executeQuery("Select answer from "+nazwafunkcji+"("+val+") as answer");
+   st.executeUpdate("DELETE FROM "+str);
   //System.out.println("Rekord został utworzony");
   } catch (SQLException e) {
    System.out.println(e.getMessage());
-   throw new SQLException(e);
+   throw new Exception("Nie usunelismy danych.");
   }
  } catch (SQLException e) {
   System.out.println("Uwaga! Mamy problemy z połączeniem!");
  }
-        throw new Exception("Rekord został dodany");
+        throw new Exception("Rekord został usuniety");
     }
-    
-    
     private Connection conn;
 }

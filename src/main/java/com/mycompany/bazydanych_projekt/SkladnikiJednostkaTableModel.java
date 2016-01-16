@@ -14,12 +14,18 @@ import javax.swing.table.TableModel;
  */
 public class SkladnikiJednostkaTableModel extends AbstractTableModel implements TableModel {
     SkladnikiJednostkaTableModel() {
-        data=null;
-        columnnames=null;
+        Object[][]obj ={{}};
+            data=obj;
+        String[]str ={""};
+            columnnames=str;
         
     }
     SkladnikiJednostkaTableModel(Object[][] dataparam,String[] columnnamesparam) {
-        data=dataparam;
+        if(dataparam!=null) data=dataparam;
+        else{
+            Object[][]obj ={{}};
+            data=obj;
+        }
         columnnames=columnnamesparam;
         
     }
@@ -60,6 +66,22 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
             }
             this.data=dane;
         }
+    } 
+    public void removeRow(int index){
+        
+            Object[][] dane=new Object[this.getRowCount()-1][this.getColumnCount()];
+            for(int i=0;i< index;i++){
+                for(int j=0;j<this.getColumnCount();j++){
+                    dane[i][j]=this.data[i][j];
+                }
+            }
+            for(int i=index+1;i< this.getRowCount();i++){
+                for(int j=0;j<this.getColumnCount();j++){
+                    dane[i][j]=this.data[i][j];
+                }
+            }
+            this.data=dane;
+        
     } 
     public boolean isInColumn(int indexOfColumn, Object val){
         for(int i=0;i< this.getRowCount();i++){
