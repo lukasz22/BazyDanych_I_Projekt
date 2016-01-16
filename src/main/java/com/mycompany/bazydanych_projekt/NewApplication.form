@@ -122,7 +122,7 @@
       <Properties>
         <Property name="title" type="java.lang.String" value="Dodaj rekwizyt"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[400, 200]"/>
+          <Dimension value="[600, 200]"/>
         </Property>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
@@ -222,6 +222,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkRekOptActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="checkRekOpt.setToolTipText(&quot;This is a message&quot;);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="NazwaRekwizytu">
           <Events>
@@ -263,6 +266,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ilo&#x15b;&#x107;"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.iloscRekwizytowLabel.setToolTipText(&quot;Liczba ca&#x142;kowita nieujemna&quot;&quot;);&#xa;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -1156,7 +1162,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="wyswietlMojePrzepisyCheckButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Chc&#x119; usuwa&#x107;, edytowa&#x107;, ogl&#x105;da&#x107; tylko swoje przepisy"/>
+            <Property name="text" type="java.lang.String" value="Tylko moje przepisy"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wyswietlMojePrzepisyCheckButtonActionPerformed"/>

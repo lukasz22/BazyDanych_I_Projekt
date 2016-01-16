@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="336,99" last-zoom="0.85"
+<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="253,0" last-zoom="0.85"
 	 default-schema="public" default-owner="postgres">
 <database name="BazaPGModeler_2" append-at-eod="true">
 	<role name="postgres"/>
@@ -93,7 +93,49 @@ insert into przedmiot_osoby values
 (111,3,5,1,'2001-11-11'),
 (222,3,6,2,'2001-11-11'),
 (888,4,7,6,'2001-11-11'),
-(777,4,8,3,'2001-11-11');]]></appended-sql>
+(777,4,8,3,'2001-11-11');
+
+CREATE VIEW public.przepis_autor
+AS 
+
+SELECT a.id_przepis,
+	a.nazwa,
+a.wykonanie,
+a.czas_wykonania,
+a.id_osoba_dodajaca,
+b.nick,
+a.data_dodania,
+a.liczba_porcji,
+a.trudnosc_wykonania
+ from  public.przepisy_kulinarne a
+inner join public.osoby b
+on b.id_osoba=a.id_osoba_dodajaca;
+
+
+CREATE VIEW pelny_skladnik_przepisu
+as
+SELECT 
+b.id_przepis,
+a.id_produkt,
+a.jednostka_miary,
+    a.nazwa_prod,
+b.ilosc,
+    a.nazwa_jedn,
+    a.sugerowana_cena_za_1_jednostke,
+    a.liczba_kcal_w_1_jednostce
+   FROM pelny_produkt_jednostka a
+     inner join public.skladniki_przepisu b
+on (b.id_produkt=a.id_produkt and b.id_jednostka=a.jednostka_miary);
+
+CREATE VIEW pelny_rekwizyt_przepisu
+as
+SELECT 
+a.id_przepis,
+b.nazwa,
+a.ilosc
+from zbiory_rekwizytow a
+inner join rekwizyt b
+on b.id_rekwizyt=a.id_rekwizyt;]]></appended-sql>
 </database>
 
 <schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
@@ -110,7 +152,7 @@ insert into przedmiot_osoby values
 <table name="przepisy_kulinarne">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="965.256" y="204.529"/>
+	<position x="966.432" y="203.353"/>
 	<column name="id_przepis" not-null="true" sequence="public.przepisy_kulinarne_id_przepis_seq">
 		<type name="integer"/>
 	</column>
@@ -146,7 +188,7 @@ insert into przedmiot_osoby values
 <table name="skladniki_przepisu">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="758.516" y="28.5882"/>
+	<position x="759.692" y="27.4117"/>
 	<column name="id_produkt" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -175,7 +217,7 @@ insert into przedmiot_osoby values
 <table name="produkty_spozywcze_jednostka">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="524.074" y="190.882"/>
+	<position x="525.25" y="189.706"/>
 	<column name="id_produkt" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -204,7 +246,7 @@ insert into przedmiot_osoby values
 <table name="osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1099.22" y="483.588"/>
+	<position x="1100.4" y="482.412"/>
 	<column name="id_osoba" not-null="true" sequence="public.osoby_id_osoba_seq">
 		<type name="integer"/>
 	</column>
@@ -236,7 +278,7 @@ insert into przedmiot_osoby values
 <table name="kategorie_przepisow">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1483.28" y="75.5882"/>
+	<position x="1484.46" y="74.4117"/>
 	<column name="id_kategorie_przepisow" not-null="true" sequence="public.kategorie_przepisow_id_kategorie_przepisow_seq">
 		<type name="integer"/>
 	</column>
@@ -251,7 +293,7 @@ insert into przedmiot_osoby values
 <table name="many_Kategorie_przepisów_has_many_Przepisy_kulinarne">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="36.8443" y="253.988"/>
+	<position x="38.0208" y="252.812"/>
 	<column name="id_kategorie_przepisow_kategorie_przepisow" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -260,20 +302,20 @@ insert into przedmiot_osoby values
 	</column>
 </table>
 
-<table name="zbiory_rekwizytów">
+<table name="zbiory_rekwizytow">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1179.24" y="41.9882"/>
+	<position x="1180.42" y="40.8117"/>
 	<column name="id_przepis" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="id_rekwizyt" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="Ilość">
+	<column name="ilosc">
 		<type name="integer"/>
 	</column>
-	<constraint name="zbiory_rekwizytow_PK" type="pk-constr" table="public.&quot;zbiory_rekwizytów&quot;">
+	<constraint name="zbiory_rekwizytow_PK" type="pk-constr" table="public.zbiory_rekwizytow">
 		<columns names="id_przepis,id_rekwizyt" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -281,7 +323,7 @@ insert into przedmiot_osoby values
 <table name="rekwizyt_osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1449.88" y="344.988"/>
+	<position x="1451.06" y="343.812"/>
 	<column name="wlasciciel" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -299,7 +341,7 @@ insert into przedmiot_osoby values
 <table name="ulubione">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="624.524" y="339.988"/>
+	<position x="625.7" y="338.812"/>
 	<column name="id_osoba" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -325,7 +367,7 @@ insert into przedmiot_osoby values
 <table name="rekwizyt">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1540.86" y="215.988"/>
+	<position x="1542.04" y="214.812"/>
 	<column name="id_rekwizyt" not-null="true" sequence="public.rekwizyt_id_rekwizyt_seq">
 		<type name="integer"/>
 	</column>
@@ -343,7 +385,7 @@ insert into przedmiot_osoby values
 <table name="przedmiot_osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="569.844" y="440.388"/>
+	<position x="571.02" y="439.212"/>
 	<column name="ilosc">
 		<type name="integer"/>
 	</column>
@@ -375,7 +417,7 @@ insert into przedmiot_osoby values
 <table name="jednostki_miary">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="28.2353" y="87.3882"/>
+	<position x="29.4118" y="86.2117"/>
 	<column name="id_jednsotki" not-null="true" sequence="public.jednostki_miary_id_jednsotki_seq">
 		<type name="integer"/>
 	</column>
@@ -401,7 +443,7 @@ insert into przedmiot_osoby values
 <table name="produkt_spozywczy">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="132.547" y="431.388"/>
+	<position x="133.723" y="430.212"/>
 	<column name="id_produkt" not-null="true" sequence="public.produkt_spozywczy_id_produkt_seq">
 		<type name="integer"/>
 	</column>
@@ -478,7 +520,7 @@ end;
 <view name="pelny_produkt_jednostka">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="252.322" y="514.565"/>
+	<position x="253.498" y="513.389"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_produkt,
 	a.jednostka_miary,
@@ -495,7 +537,7 @@ end;
 <view name="rekwizyty_all_osob">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="58.649" y="373.388"/>
+	<position x="59.8255" y="372.212"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_osoba,
     a.imie,
@@ -532,7 +574,7 @@ end;
 	<role name="postgres"/>
 	<language name="sql" sql-disabled="true"/>
 	<return-type>
-	<type name="public.nazwa_ilosc" precision="32591"/>
+	<type name="public.nazwa_ilosc" precision="32654"/>
 	</return-type>
 	<parameter name="_param1">
 		<type name="integer"/>
@@ -545,7 +587,7 @@ where a.id_osoba=$1;]]></definition>
 <view name="pelne_produkty_wlascicieli">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="36.8443" y="507.788"/>
+	<position x="38.0208" y="506.612"/>
 	<reference>
 		<expression><![CDATA[ SELECT b.wlasciciel,
     a.nazwa_prod,
@@ -696,7 +738,7 @@ end;]]></definition>
 </constraint>
 
 <constraint name="Składniki_przepisu_FK" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.przepisy_kulinarne" table="public.skladniki_przepisu">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.przepisy_kulinarne" table="public.skladniki_przepisu">
 	<columns names="id_przepis" ref-type="src-columns"/>
 	<columns names="id_przepis" ref-type="dst-columns"/>
 </constraint>
@@ -720,13 +762,13 @@ end;]]></definition>
 </constraint>
 
 <constraint name="Zbiory_rekwizytów_FK" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.przepisy_kulinarne" table="public.&quot;zbiory_rekwizytów&quot;">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.przepisy_kulinarne" table="public.zbiory_rekwizytow">
 	<columns names="id_przepis" ref-type="src-columns"/>
 	<columns names="id_przepis" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="id_rekwizyt_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.rekwizyt" table="public.&quot;zbiory_rekwizytów&quot;">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.rekwizyt" table="public.zbiory_rekwizytow">
 	<columns names="id_rekwizyt" ref-type="src-columns"/>
 	<columns names="id_rekwizyt" ref-type="dst-columns"/>
 </constraint>
@@ -773,11 +815,15 @@ end;]]></definition>
 	 dst-table="public.osoby"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="&quot;rel_składniki_przepisu_przepisy_kulinarne&quot;" type="relfk"
+<relationship name="rel_składniki_przepisu_przepisy_kulinarne" type="relfk"
 	 custom-color="#c5f2f5"
 	 src-table="public.skladniki_przepisu"
 	 dst-table="public.przepisy_kulinarne"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="150.296" y="-29.484"/>
+	</label>
+</relationship>
 
 <relationship name="rel_produkty_spozywcze_jednostka_jednostki_miary" type="relfk"
 	 custom-color="#9de8c8"
@@ -801,13 +847,13 @@ end;]]></definition>
 
 <relationship name="&quot;rel_zbiory_rekwizytów_przepisy_kulinarne&quot;" type="relfk"
 	 custom-color="#f6bc9b"
-	 src-table="public.&quot;zbiory_rekwizytów&quot;"
+	 src-table="public.zbiory_rekwizytow"
 	 dst-table="public.przepisy_kulinarne"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="&quot;rel_zbiory_rekwizytów_rekwizyt&quot;" type="relfk"
 	 custom-color="#b7f4d3"
-	 src-table="public.&quot;zbiory_rekwizytów&quot;"
+	 src-table="public.zbiory_rekwizytow"
 	 dst-table="public.rekwizyt"
 	 src-required="false" dst-required="false"/>
 

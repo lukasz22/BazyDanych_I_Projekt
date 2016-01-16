@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author lukasz
@@ -81,8 +82,13 @@ public class PostgreSQLJDBCDriverTest {
   try {
    st.executeUpdate("INSERT INTO "+nazwaTabeli+"(imie,nazwisko,nick) VALUES ('"+imie+"' , '"+nazwisko+"', '"+nick+"')");
   System.out.println("Rekord został utworzony");
+  JOptionPane.showMessageDialog(null,
+    "Dodano użytkownika");
   } catch (SQLException e) {
    System.out.println(e.getMessage());
+   JOptionPane.showMessageDialog(null, "Nieodpowiedni zestaw danych wejściowych."
+           + "Dokonaj korekty.","Błąd", JOptionPane.ERROR_MESSAGE);
+   
    
   }
  } catch (SQLException e) {
@@ -182,7 +188,7 @@ public class PostgreSQLJDBCDriverTest {
  } catch (SQLException e) {
   System.out.println("Uwaga! Mamy problemy z połączeniem!");
  }
-        throw new Exception("Rekord został dodany");
+        throw new Exception("Rekord został dodany do bazy danych");
     }
     
 public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws Exception{
@@ -206,13 +212,13 @@ public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws E
             return str;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            throw new Exception("Coś poszło nie tak");
+            throw new Exception("Nie dodano rekordu do bazy danych");
         }
         //throw new Exception("Rekord został dodany");
     } catch (SQLException e) {
         System.out.println("Uwaga! Mamy problemy z połączeniem!");
     }
-        return null;
+    throw new Exception("Rekord został dodany do bazy danych");
     
 }
     
@@ -232,7 +238,7 @@ public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws E
  } catch (SQLException e) {
   System.out.println("Uwaga! Mamy problemy z połączeniem!");
  }
-        throw new Exception("Rekord został usuniety");
+        throw new Exception("Usunięto z bazy danych");
     }
     private Connection conn;
 }
