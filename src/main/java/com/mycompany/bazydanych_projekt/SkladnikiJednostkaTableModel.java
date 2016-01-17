@@ -54,7 +54,7 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
       }
     
     public void addRow(Object[] obj){
-        if(obj.length==this.getColumnCount()){
+       // if(obj.length==this.getColumnCount()){
             Object[][] dane=new Object[this.getRowCount()+1][this.getColumnCount()];
             for(int i=0;i< this.getRowCount();i++){
                 for(int j=0;j<this.getColumnCount();j++){
@@ -65,7 +65,7 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
                 dane[this.getRowCount()][j]=obj[j];
             }
             this.data=dane;
-        }
+       // }
     } 
     public void removeRow(int index){
         

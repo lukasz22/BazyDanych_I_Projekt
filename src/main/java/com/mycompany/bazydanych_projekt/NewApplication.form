@@ -267,7 +267,7 @@
             <Property name="text" type="java.lang.String" value="Ilo&#x15b;&#x107;"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.iloscRekwizytowLabel.setToolTipText(&quot;Liczba ca&#x142;kowita nieujemna&quot;&quot;);&#xa;"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.iloscRekwizytowLabel.setToolTipText(&quot;Liczba ca&#x142;kowita nieujemna&quot;);&#xa;"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -450,7 +450,7 @@
       <Properties>
         <Property name="title" type="java.lang.String" value="Kreator dodawania nowego produktu z jednostk&#x105;"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[355, 220]"/>
+          <Dimension value="[450, 220]"/>
         </Property>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
@@ -1083,14 +1083,18 @@
                                   <Component id="wyswietlPrzepisyUsunPrzepisButton" alignment="0" max="32767" attributes="0"/>
                                   <Component id="wyswietlPrzepisyobejrzyjPrzepisButton" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="wyswietlPrzepisyDodajUlubione" min="-2" max="-2" attributes="0"/>
+                              <Component id="wyswietlPrzepisyCenaKalorie" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="wyswietlMojePrzepisyCheckButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="wyswietlPrzepisyPokazUlubione" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="8" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1098,12 +1102,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="wyswietlMojePrzepisyCheckButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="wyswietlMojePrzepisyCheckButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="wyswietlPrzepisyPokazUlubione" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jScrollPane7" min="-2" pref="275" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="wyswietlPrzepisyCenaKalorie" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="wyswietlPrzepisyDodajUlubione" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="wyswietlPrzepisyUsunPrzepisButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="wyswietlPrzepisyobejrzyjPrzepisButton" min="-2" max="-2" attributes="0"/>
@@ -1162,10 +1173,34 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="wyswietlMojePrzepisyCheckButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tylko moje przepisy"/>
+            <Property name="text" type="java.lang.String" value="Poka&#x17c; moje przepisy"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wyswietlMojePrzepisyCheckButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="wyswietlPrzepisyDodajUlubione">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Like"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wyswietlPrzepisyDodajUlubioneActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="wyswietlPrzepisyPokazUlubione">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Poka&#x17c; ulubione"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wyswietlPrzepisyPokazUlubioneActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="wyswietlPrzepisyCenaKalorie">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Kcal i cena"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wyswietlPrzepisyCenaKalorieActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -1301,6 +1336,11 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jMenu1"/>
+          </Properties>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -1331,7 +1371,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
               <Component id="Komunikat" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="269" max="32767" attributes="0"/>
+              <EmptySpace pref="317" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>

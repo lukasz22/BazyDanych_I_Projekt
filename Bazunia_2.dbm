@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="32,0" last-zoom="0.85"
+<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="327,150" last-zoom="0.85"
 	 default-schema="public" default-owner="postgres">
 <database name="BazaPGModeler_2" append-at-eod="true">
 	<role name="postgres"/>
@@ -149,7 +149,24 @@ begin
 for arg in select a.nick, count(*)  from przepis_autor a group by a.nick loop
 return next arg;
 end loop;
-end;';]]></appended-sql>
+end;';
+
+CREATE VIEW public.przepis_autor_ulubione
+AS 
+
+SELECT a.id_przepis,
+	a.nazwa,
+a.wykonanie,
+a.czas_wykonania,
+a.id_osoba_dodajaca,
+a.nick,
+a.data_dodania,
+a.liczba_porcji,
+a.trudnosc_wykonania,
+b.id_osoba as kto_lubi
+ from  public.przepis_autor a
+inner join public.ulubione b
+on b.id_przepis=a.id_przepis;]]></appended-sql>
 </database>
 
 <schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
@@ -166,7 +183,7 @@ end;';]]></appended-sql>
 <table name="przepisy_kulinarne">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="966.432" y="203.353"/>
+	<position x="975.843" y="199.824"/>
 	<column name="id_przepis" not-null="true" sequence="public.przepisy_kulinarne_id_przepis_seq">
 		<type name="integer"/>
 	</column>
@@ -211,7 +228,7 @@ end;';]]></appended-sql>
 <table name="skladniki_przepisu">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="759.692" y="26.2352"/>
+	<position x="760.868" y="26.2352"/>
 	<column name="id_produkt" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -243,7 +260,7 @@ end;';]]></appended-sql>
 <table name="produkty_spozywcze_jednostka">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="525.25" y="189.706"/>
+	<position x="526.426" y="189.706"/>
 	<column name="id_produkt" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -278,7 +295,7 @@ end;';]]></appended-sql>
 <table name="osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1100.4" y="482.412"/>
+	<position x="1092.17" y="495.353"/>
 	<column name="id_osoba" not-null="true" sequence="public.osoby_id_osoba_seq">
 		<type name="integer"/>
 	</column>
@@ -310,7 +327,7 @@ end;';]]></appended-sql>
 <table name="kategorie_przepisow">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1484.46" y="74.4117"/>
+	<position x="1485.64" y="74.4117"/>
 	<column name="id_kategorie_przepisow" not-null="true" sequence="public.kategorie_przepisow_id_kategorie_przepisow_seq">
 		<type name="integer"/>
 	</column>
@@ -325,7 +342,7 @@ end;';]]></appended-sql>
 <table name="many_Kategorie_przepisów_has_many_Przepisy_kulinarne">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="38.0208" y="252.812"/>
+	<position x="39.1973" y="252.812"/>
 	<column name="id_kategorie_przepisow_kategorie_przepisow" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -337,7 +354,7 @@ end;';]]></appended-sql>
 <table name="zbiory_rekwizytow">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1180.42" y="40.8117"/>
+	<position x="1181.6" y="40.8117"/>
 	<column name="id_przepis" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -355,7 +372,7 @@ end;';]]></appended-sql>
 <table name="rekwizyt_osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1451.06" y="343.812"/>
+	<position x="1452.24" y="343.812"/>
 	<column name="wlasciciel" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -376,7 +393,7 @@ end;';]]></appended-sql>
 <table name="ulubione">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="625.7" y="338.812"/>
+	<position x="597.465" y="294.106"/>
 	<column name="id_osoba" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -405,7 +422,7 @@ end;';]]></appended-sql>
 <table name="rekwizyt">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1542.04" y="214.812"/>
+	<position x="1543.22" y="214.812"/>
 	<column name="id_rekwizyt" not-null="true" sequence="public.rekwizyt_id_rekwizyt_seq">
 		<type name="integer"/>
 	</column>
@@ -423,7 +440,7 @@ end;';]]></appended-sql>
 <table name="przedmiot_osoby">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="571.02" y="439.212"/>
+	<position x="572.196" y="439.212"/>
 	<column name="ilosc" not-null="true">
 		<type name="numeric" length="6" precision="2"/>
 	</column>
@@ -458,7 +475,7 @@ end;';]]></appended-sql>
 <table name="jednostki_miary">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="29.4118" y="86.2117"/>
+	<position x="30.5883" y="86.2117"/>
 	<column name="id_jednsotki" not-null="true" sequence="public.jednostki_miary_id_jednsotki_seq">
 		<type name="integer"/>
 	</column>
@@ -484,7 +501,7 @@ end;';]]></appended-sql>
 <table name="produkt_spozywczy">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="133.723" y="430.212"/>
+	<position x="134.899" y="430.212"/>
 	<column name="id_produkt" not-null="true" sequence="public.produkt_spozywczy_id_produkt_seq">
 		<type name="integer"/>
 	</column>
@@ -498,33 +515,6 @@ end;';]]></appended-sql>
 		<columns names="nazwa_prod" ref-type="src-columns"/>
 	</constraint>
 </table>
-
-<function name="rekwizyt_osoby_trigger"
-		window-func="false"
-		returns-setof="false"
-		behavior-type="CALLED ON NULL INPUT"
-		function-type="VOLATILE"
-		security-type="SECURITY INVOKER"
-		execution-cost="1"
-		row-amount="0">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<language name="plpgsql" sql-disabled="true"/>
-	<return-type>
-	<type name="trigger"/>
-	</return-type>
-	<parameter name="numberOfrecords">
-		<type name="integer"/>
-	</parameter>
-	<definition><![CDATA[
-select count(*) into numberOfrecords from rekwizyt 
-where rekwizyt.nazwa=TG_ARGV[0];
-if numberOfrecords<=0
-then
-	insert into rekwizyt(nazwa) values(new.]);
-end if;
-]]></definition>
-</function>
 
 <function name="return_text"
 		window-func="false"
@@ -561,7 +551,7 @@ end;
 <view name="pelny_produkt_jednostka">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="253.498" y="513.389"/>
+	<position x="254.674" y="513.389"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_produkt,
 	a.jednostka_miary,
@@ -578,7 +568,7 @@ end;
 <view name="rekwizyty_all_osob">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="59.8255" y="372.212"/>
+	<position x="61.002" y="372.212"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_osoba,
     a.imie,
@@ -615,7 +605,7 @@ end;
 	<role name="postgres"/>
 	<language name="sql" sql-disabled="true"/>
 	<return-type>
-	<type name="public.nazwa_ilosc" precision="32730"/>
+	<type name="public.nazwa_ilosc" precision="32690"/>
 	</return-type>
 	<parameter name="_param1">
 		<type name="integer"/>
@@ -628,7 +618,7 @@ where a.id_osoba=$1;]]></definition>
 <view name="pelne_produkty_wlascicieli">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="38.0208" y="506.612"/>
+	<position x="39.1973" y="506.612"/>
 	<reference>
 		<expression><![CDATA[ SELECT b.wlasciciel,
     a.nazwa_prod,
@@ -761,6 +751,7 @@ end;]]></definition>
 	</parameter>
 	<definition><![CDATA[declare
 suma numeric(10,2);
+podzielnik integer;
 arg RECORD;
 begin
 suma=0.0;
@@ -769,8 +760,11 @@ suma=0.0;
 loop
 suma :=suma+arg.ilosc*arg.sugerowana_cena_za_1_jednostke;
 end loop;*/
+select b.liczba_porcji into podzielnik from przepisy_kulinarne b 
+where b.id_przepis=id_przepis_param;
 select sum(a.ilosc*a.sugerowana_cena_za_1_jednostke) into suma 
 from pelny_skladnik_przepisu a where a.id_przepis=id_przepis_param;
+suma:=suma/podzielnik;
 return suma;
 end;
 
@@ -797,6 +791,7 @@ end;
 	<definition><![CDATA[declare
 suma numeric(10,2);
 arg RECORD;
+podzielnik integer;
 begin
 suma=0.0;
 /*for arg in 
@@ -804,8 +799,11 @@ suma=0.0;
 loop
 suma :=suma+arg.ilosc*arg.liczba_kcal_w_1_jednostce;
 end loop;*/
+select b.liczba_porcji into podzielnik from przepisy_kulinarne b 
+where b.id_przepis=id_przepis_param;
 select sum(a.ilosc*a.liczba_kcal_w_1_jednostce) into suma 
 from pelny_skladnik_przepisu a where a.id_przepis=id_przepis_param;
+suma :=suma/podzielnik;
 return suma;
 end;]]></definition>
 </function>
@@ -813,7 +811,7 @@ end;]]></definition>
 <table name="aktywnosc">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1030.59" y="381.176"/>
+	<position x="1041.18" y="397.647"/>
 	<column name="id_aktywnosc" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -827,6 +825,183 @@ end;]]></definition>
 		<columns names="id_aktywnosc" ref-type="src-columns"/>
 	</constraint>
 </table>
+
+<function name="add_aktywnosc_dodano"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[begin
+insert into aktywnosc(zdarzenie,id_autor) values('Dodano przepis o nazwie: '||new.nazwa,new.id_osoba_dodajaca);
+return null;
+end;]]></definition>
+</function>
+
+<trigger name="trig_przepisy_kulinarne_after_add" firing-type="AFTER" per-line="true" constraint="false"
+	 ins-event="true" del-event="false" upd-event="false" trunc-event="false"
+	 table="public.przepisy_kulinarne">
+		<function signature="add_aktywnosc_dodano()"/>
+</trigger>
+
+<function name="add_aktywnosc_ununieto"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[begin
+insert into aktywnosc(zdarzenie,id_autor) values('Usunięto przepis o nazwie: '||old.nazwa,old.id_osoba_dodajaca);
+return null;
+end;]]></definition>
+</function>
+
+<trigger name="trig_przepisy_kulinarne_after_del" firing-type="AFTER" per-line="true" constraint="false"
+	 ins-event="false" del-event="true" upd-event="false" trunc-event="false"
+	 table="public.przepisy_kulinarne">
+		<function signature="add_aktywnosc_ununieto()"/>
+</trigger>
+
+<function name="delete_aktywnosc"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[declare
+liczba_wierszy integer;
+min_id integer;
+begin
+select Count(*) into liczba_wierszy  from aktywnosc;
+if(liczba_wierszy =6)
+then
+select min(aktywnosc.id_aktywnosc) into min_id  from aktywnosc;
+delete from aktywnosc where aktywnosc.id_aktywnosc = min_id;
+end if;
+return null;
+end;]]></definition>
+</function>
+
+<trigger name="trig_aktywnosc_after_add" firing-type="AFTER" per-line="true" constraint="false"
+	 ins-event="true" del-event="false" upd-event="false" trunc-event="false"
+	 table="public.aktywnosc">
+		<function signature="delete_aktywnosc()"/>
+</trigger>
+
+<function name="add_aktywnosc_dodano_u"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[declare
+nazwa_p varchar(80);
+begin
+select a.nazwa into nazwa_p from przepisy_kulinarne a 
+where new.id_przepis=a.id_przepis;
+insert into aktywnosc(zdarzenie,id_autor) values('Przepis o nazwie: '||nazwa_p||' dodano do ulubionych',new.id_osoba);
+return null;
+end;]]></definition>
+</function>
+
+<function name="add_aktywnosc_usunieto_u"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[declare
+nazwa_p varchar(80);
+begin
+select a.nazwa into nazwa_p from przepisy_kulinarne a 
+where old.id_przepis=a.id_przepis;
+insert into aktywnosc(zdarzenie,id_autor) values('Przepis o nazwie: '||nazwa_p||' usunieto z ulubionych',old.id_osoba);
+return null;
+end;]]></definition>
+</function>
+
+<trigger name="trig_ulubione_after_add" firing-type="AFTER" per-line="true" constraint="false"
+	 ins-event="true" del-event="false" upd-event="false" trunc-event="false"
+	 table="public.ulubione">
+		<function signature="add_aktywnosc_dodano_u()"/>
+</trigger>
+
+<trigger name="trig_ulubione_after_del" firing-type="AFTER" per-line="true" constraint="false"
+	 ins-event="false" del-event="true" upd-event="false" trunc-event="false"
+	 table="public.ulubione">
+		<function signature="add_aktywnosc_usunieto_u()"/>
+</trigger>
+
+<function name="czy_osoba_lubi_przepis"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="integer"/>
+	</return-type>
+	<parameter name="id_osoba_param">
+		<type name="integer"/>
+	</parameter>
+	<parameter name="id_przepis_param">
+		<type name="integer"/>
+	</parameter>
+	<definition><![CDATA[declare
+liczba integer;
+begin
+liczba :=0;
+select count(*) into liczba from public.ulubione
+where public.ulubione.id_osoba=id_osoba_param 
+and public.ulubione.id_przepis=id_przepis_param;
+return liczba;
+end;]]></definition>
+</function>
 
 <constraint name="Przepisy_kulinarne_FK" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.osoby" table="public.przepisy_kulinarne">
