@@ -80,7 +80,7 @@ public class PostgreSQLJDBCDriverTest {
   //Connection conn = DriverManager.getConnection(url+baza, login, password);
   Statement st = conn.createStatement();
   try {
-   st.executeUpdate("INSERT INTO "+nazwaTabeli+"(imie,nazwisko,nick) VALUES ('"+imie+"' , '"+nazwisko+"', '"+nick+"')");
+   st.executeUpdate("INSERT INTO "+nazwaTabeli+"(imie,haslo,nick) VALUES ('"+imie+"' , '"+nazwisko+"', '"+nick+"')");
   System.out.println("Rekord został utworzony");
   JOptionPane.showMessageDialog(null,
     "Dodano użytkownika");

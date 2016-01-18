@@ -3,33 +3,34 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="327,150" last-zoom="0.85"
+<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="0,0" last-zoom="0.85"
 	 default-schema="public" default-owner="postgres">
 <database name="BazaPGModeler_2" append-at-eod="true">
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
-	<appended-sql><![CDATA[insert into osoby values('1','Tomek','Bajorek','tbajorek');
-insert into osoby values('2','Kamil','Drzazga','mario');
-insert into osoby values('3','Łukasz','Bartocha','luki');
-insert into osoby values('4','Dawid','Karmiński','dawka');
+	<appended-sql><![CDATA[insert into osoby values('1','Tomek','tbajorek','tbajorek');
+insert into osoby values('2','Kamil','mario','mario');
+insert into osoby values('3','Łukasz','luki','luki');
+insert into osoby values('4','Dawid','dawka','dawka');
+SELECT SETVAL('osoby_id_osoba_seq', 17, false);
 
-insert into rekwizyt values('1','patelnia');
-insert into rekwizyt values('2','mikser');
-insert into rekwizyt values('3','łyżka');
-insert into rekwizyt values('4','widelec');
-insert into rekwizyt values('5','nóż');
-insert into rekwizyt values('6','kubek');
-insert into rekwizyt values('7','szklanka');
-insert into rekwizyt values('8','piekarnik');
-insert into rekwizyt values('9','zegar');
-insert into rekwizyt values('10','garnek');
-insert into rekwizyt values('11','łyżeczka');
-insert into rekwizyt values('12','mikrofalówka');
-insert into rekwizyt values('13','sokowirówka');
-insert into rekwizyt values('14','młynek');
-insert into rekwizyt values('15','moździerz');
-insert into rekwizyt values('16','ekspres');
-
+insert into rekwizyt values(1,'patelnia');
+insert into rekwizyt values(2,'mikser');
+insert into rekwizyt values(3,'łyżka');
+insert into rekwizyt values(4,'widelec');
+insert into rekwizyt values(5,'nóż');
+insert into rekwizyt values(6,'kubek');
+insert into rekwizyt values(7,'szklanka');
+insert into rekwizyt values(8,'piekarnik');
+insert into rekwizyt values(9,'zegar');
+insert into rekwizyt values(10,'garnek');
+insert into rekwizyt values(11,'łyżeczka');
+insert into rekwizyt values(12,'mikrofalówka');
+insert into rekwizyt values(13,'sokowirówka');
+insert into rekwizyt values(14,'młynek');
+insert into rekwizyt values(15,'moździerz');
+insert into rekwizyt values(16,'ekspres');
+SELECT SETVAL('rekwizyt_id_rekwizyt_seq', 17, false);
 insert into rekwizyt_osoby values
 (1,1,11),
 (1,2,12),
@@ -57,17 +58,17 @@ insert into jednostki_miary values
 (6,'l'),
 (7,'sztuka'),
 (8,'szczypta');
-
+SELECT SETVAL('jednostki_miary_id_jednsotki_seq', 9, false);
 insert into produkt_spozywczy values
 (1,'syrop'),
 (2,'jogurt'),
-(3,'pierogi'),
-(4,'tosty'),
-(5,'naleśniki'),
-(6,'bigos'),
-(7,'kawa z ekspresu'),
-(8,'pancakes');
-
+(3,'mąka'),
+(4,'cukier'),
+(5,'sól'),
+(6,'proszek do pieczenia'),
+(7,'kakao'),
+(8,'aromat pomarańczowy');
+SELECT SETVAL('produkt_spozywczy_id_produkt_seq', 9, false);
 insert into produkty_spozywcze_jednostka values
 (1,1,11,1111),
 (1,2,12,1212),
@@ -139,6 +140,17 @@ on b.id_rekwizyt=a.id_rekwizyt;
 
 create type nick_lp as (nick varchar(30), liczba_przepisow integer);
 
+create or replace function liczba_przepisow_jednej_osoby_function(integer) returns integer
+Language 'plpgsql' as '
+Declare
+liczba integer;
+id_param integer;
+begin
+id_param :=$1;
+select count(*) into liczba from przepis_autor a where a.id_osoba_dodajaca=id_param;
+return liczba;
+end;';
+
 create or replace function nick_liczba_przepisow_function() returns setof nick_lp
 Language 'plpgsql' as '
 Declare
@@ -146,10 +158,12 @@ arg nick_lp;
 iterator integer;
 begin
 
-for arg in select a.nick, count(*)  from przepis_autor a group by a.nick loop
+for arg in select b.nick, liczba_przepisow_jednej_osoby_function(b.id_osoba) as liczba_przepisow  
+from osoby b order by liczba_przepisow desc loop
 return next arg;
 end loop;
 end;';
+
 
 CREATE VIEW public.przepis_autor_ulubione
 AS 
@@ -166,7 +180,17 @@ a.trudnosc_wykonania,
 b.id_osoba as kto_lubi
  from  public.przepis_autor a
 inner join public.ulubione b
-on b.id_przepis=a.id_przepis;]]></appended-sql>
+on b.id_przepis=a.id_przepis;
+
+CREATE VIEW public.aktywnosc_osoba
+AS 
+SELECT 
+a.id_aktywnosc,
+a.zdarzenie,
+b.nick
+from  public.aktywnosc a
+inner join public.osoby b
+on a.id_autor=b.id_osoba;]]></appended-sql>
 </database>
 
 <schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
@@ -239,7 +263,7 @@ on b.id_przepis=a.id_przepis;]]></appended-sql>
 		<type name="integer"/>
 	</column>
 	<column name="ilosc" not-null="true">
-		<type name="integer"/>
+		<type name="numeric" length="6" precision="2"/>
 	</column>
 	<constraint name="id_prod_id_przepis_PK" type="pk-constr" table="public.skladniki_przepisu">
 		<columns names="id_produkt,id_przepis,id_jednostka" ref-type="src-columns"/>
@@ -302,7 +326,7 @@ on b.id_przepis=a.id_przepis;]]></appended-sql>
 	<column name="imie" not-null="true">
 		<type name="character varying" length="30"/>
 	</column>
-	<column name="nazwisko" not-null="true">
+	<column name="haslo" not-null="true">
 		<type name="character varying" length="40"/>
 	</column>
 	<column name="nick" not-null="true">
@@ -572,7 +596,7 @@ end;
 	<reference>
 		<expression><![CDATA[ SELECT a.id_osoba,
     a.imie,
-    a.nazwisko,
+    a.haslo,
     a.nick,
     b.nazwa,
     c.ilosc
@@ -694,40 +718,8 @@ czas_wykonania,id_osoba_dodajaca,
 data_dodania,liczba_porcji,
 trudnosc_wykonania) values
 (nazwa_p,wykonanie_p,czas_wykonania_p,id_osoba_dodajaca_p,
-'2008-11-11',liczba_porcji_p,trudnosc_wykonania_p)
+now(),liczba_porcji_p,trudnosc_wykonania_p)
 returning id_przepis into zmienna;
-return zmienna;
-end;]]></definition>
-</function>
-
-<function name="test"
-		window-func="false"
-		returns-setof="false"
-		behavior-type="CALLED ON NULL INPUT"
-		function-type="VOLATILE"
-		security-type="SECURITY INVOKER"
-		execution-cost="1"
-		row-amount="0">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<language name="plpgsql" sql-disabled="true"/>
-	<return-type>
-	<type name="integer"/>
-	</return-type>
-	<parameter name="pierwszy">
-		<type name="text"/>
-	</parameter>
-	<parameter name="drugi">
-		<type name="text"/>
-	</parameter>
-	<parameter name="trzeci">
-		<type name="text"/>
-	</parameter>
-	<definition><![CDATA[declare 
-zmienna integer;
-begin
-insert into osoby(imie,nazwisko,nick)
-values(pierwszy,drugi,trzeci) returning id_osoba into zmienna;
 return zmienna;
 end;]]></definition>
 </function>
@@ -849,7 +841,7 @@ end;]]></definition>
 <trigger name="trig_przepisy_kulinarne_after_add" firing-type="AFTER" per-line="true" constraint="false"
 	 ins-event="true" del-event="false" upd-event="false" trunc-event="false"
 	 table="public.przepisy_kulinarne">
-		<function signature="add_aktywnosc_dodano()"/>
+		<function signature="public.add_aktywnosc_dodano()"/>
 </trigger>
 
 <function name="add_aktywnosc_ununieto"
@@ -875,7 +867,7 @@ end;]]></definition>
 <trigger name="trig_przepisy_kulinarne_after_del" firing-type="AFTER" per-line="true" constraint="false"
 	 ins-event="false" del-event="true" upd-event="false" trunc-event="false"
 	 table="public.przepisy_kulinarne">
-		<function signature="add_aktywnosc_ununieto()"/>
+		<function signature="public.add_aktywnosc_ununieto()"/>
 </trigger>
 
 <function name="delete_aktywnosc"
@@ -909,7 +901,7 @@ end;]]></definition>
 <trigger name="trig_aktywnosc_after_add" firing-type="AFTER" per-line="true" constraint="false"
 	 ins-event="true" del-event="false" upd-event="false" trunc-event="false"
 	 table="public.aktywnosc">
-		<function signature="delete_aktywnosc()"/>
+		<function signature="public.delete_aktywnosc()"/>
 </trigger>
 
 <function name="add_aktywnosc_dodano_u"
@@ -963,13 +955,13 @@ end;]]></definition>
 <trigger name="trig_ulubione_after_add" firing-type="AFTER" per-line="true" constraint="false"
 	 ins-event="true" del-event="false" upd-event="false" trunc-event="false"
 	 table="public.ulubione">
-		<function signature="add_aktywnosc_dodano_u()"/>
+		<function signature="public.add_aktywnosc_dodano_u()"/>
 </trigger>
 
 <trigger name="trig_ulubione_after_del" firing-type="AFTER" per-line="true" constraint="false"
 	 ins-event="false" del-event="true" upd-event="false" trunc-event="false"
 	 table="public.ulubione">
-		<function signature="add_aktywnosc_usunieto_u()"/>
+		<function signature="public.add_aktywnosc_usunieto_u()"/>
 </trigger>
 
 <function name="czy_osoba_lubi_przepis"

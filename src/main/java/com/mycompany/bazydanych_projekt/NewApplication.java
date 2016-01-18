@@ -10,7 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -33,7 +36,7 @@ public class NewApplication extends javax.swing.JFrame {
         id_user=null;
         rekwizytyOsoby.setEnabled(false);
         yourproducts.setEnabled(false);
-        this.setTitle("Książka kucharska - Brak wybranego profilu");
+        this.setTitle("Książka kucharska - Profil ogólny");
         psql = new PostgreSQLJDBCDriverTest();
         try {
             psql.connect();
@@ -52,15 +55,30 @@ public class NewApplication extends javax.swing.JFrame {
         jTable1.setModel(model);
        // jTable1=new JTable(psql.getRows("rekwizyt", dane),dane);
         jTable1.setSelectionModel(new ClassListSelectionModel());
+        jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+        jTable1.getColumnModel().getColumn(1).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(1).setMaxWidth(0);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
         jTable1.repaint();
         
-        String dane2[]={"id_produkt","jednostka_miary","Nazwa","Ilość","Jednostka","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
+        String dane2[]={"id_przepis","id_produkt","jednostka_miary","Nazwa","Ilość","Jednostka","liczba_kcal_w_1_jednostce","sugerowana_cena_za_1_jednostke"};
         TableModel model2 = null;
-        Object[][] obj=new Object[0][7];
+        Object[][] obj=new Object[0][8];
         model2 = new SkladnikiJednostkaTableModel(obj,dane2);
         this.dodajPrzepisdodajSkladnikiTable.setModel(model2);
         this.dodajPrzepisdodajSkladnikiTable.setSelectionModel(new ClassListSelectionModel());
         this.dodajPrzepisdodajSkladnikiTable.repaint();
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(0).setMinWidth(0);
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(1).setMinWidth(0);
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(1).setMaxWidth(0);
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(1).setPreferredWidth(0);
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(2).setMinWidth(0);
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(2).setMaxWidth(0);
+        dodajPrzepisdodajSkladnikiTable.getColumnModel().getColumn(2).setPreferredWidth(0);
         
         String dane3[]={"id_rekwizyt","Nazwa","Ilosc"};
         TableModel model3 = null;
@@ -75,12 +93,18 @@ public class NewApplication extends javax.swing.JFrame {
         mod.fireTableDataChanged();
         this.dodajPrzepisDodajRekwizytTable.setModel(mod);
         this.dodajPrzepisDodajRekwizytTable.repaint();
+        dodajPrzepisDodajRekwizytTable.getColumnModel().getColumn(0).setMinWidth(0);
+        dodajPrzepisDodajRekwizytTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        dodajPrzepisDodajRekwizytTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         
         String dane4[]={"id_przepis","Nazwa","Autor"};
         TableModel model4 = null;
         Object[][] obj4=new Object[0][3];
         model4 = new SkladnikiJednostkaTableModel(obj4,dane4);
         this.wyswietlPrzepisyTable.setModel(model4);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setMinWidth(0);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         this.wyswietlPrzepisyTable.setSelectionModel(new ClassListSelectionModel());
         wyswietlPrzepisyTable.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
@@ -99,15 +123,45 @@ public class NewApplication extends javax.swing.JFrame {
             }
             if(odp.equals("1")){
                 wyswietlPrzepisyDodajUlubione.setText("Dislike");
+                Object [] obj=psql.getElementOfTable("ulubione","priorytet","id_osoba="+id_user+" and "
+                        +"id_przepis="+wyswietlPrzepisyTable.getModel().getValueAt(row,0).toString());
+                priorytetLabel.setText("Priorytet zaznaczonego przepisu: "+obj[0].toString());
+                
             }
                 else{
                 wyswietlPrzepisyDodajUlubione.setText("Like");
+                priorytetLabel.setText("---");
             }
 
         }
         }
 }       );
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setMinWidth(0);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         this.wyswietlPrzepisyTable.repaint();
+        
+        String dane5[]={"id_aktywnosc","zdarzenie","id_autor"};
+        TableModel model5 = null;
+        Object[][] obj5=new Object[0][3];
+        model5 = new SkladnikiJednostkaTableModel(obj5,dane5);
+        this.rankingTable.setModel(model5);
+        this.rankingTable.setSelectionModel(new ClassListSelectionModel());
+        this.rankingTable.repaint();
+        rankingTable.getColumnModel().getColumn(0).setMinWidth(0);
+        rankingTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        rankingTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        String dane6[]={"nick","liczba_przepisow"};
+        TableModel model6 = null;
+        Object[][] obj6=new Object[0][2];
+        model6 = new SkladnikiJednostkaTableModel(obj6,dane6);
+        this.rankingPrawdziwyTable.setModel(model6);
+        this.rankingPrawdziwyTable.setSelectionModel(new ClassListSelectionModel());
+        this.rankingPrawdziwyTable.repaint();
+        
+        this.ustawDostep(false);
+        this.wylogujMenu.setEnabled(false);
     }
 
     /**
@@ -193,6 +247,8 @@ public class NewApplication extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        dataDodaniaField = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         wyswietlPrzepisyFrame = new javax.swing.JFrame();
         jScrollPane7 = new javax.swing.JScrollPane();
         wyswietlPrzepisyTable = new javax.swing.JTable();
@@ -203,28 +259,34 @@ public class NewApplication extends javax.swing.JFrame {
         wyswietlPrzepisyDodajUlubione = new javax.swing.JButton();
         wyswietlPrzepisyPokazUlubione = new javax.swing.JCheckBox();
         wyswietlPrzepisyCenaKalorie = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        Komunikat = new javax.swing.JTextField();
-        komunikatBledy = new javax.swing.JTextField();
+        priorytetLabel = new javax.swing.JLabel();
+        aktywnoscPokazFrame = new javax.swing.JFrame();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        rankingTable = new javax.swing.JTable();
+        rankingZamknij = new javax.swing.JButton();
+        rankingPrawdziwy = new javax.swing.JFrame();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        rankingPrawdziwyTable = new javax.swing.JTable();
+        rankingPrawdziwyZamknij = new javax.swing.JButton();
+        ifZalogowanyLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
+        zalogujMenu = new javax.swing.JMenuItem();
+        wylogujMenu = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
         rekwizytyOsoby = new javax.swing.JMenu();
         dodajRekwizyt = new javax.swing.JMenuItem();
         wyswietlTwojeRekwizytyOpen = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
         yourproducts = new javax.swing.JMenu();
         dodajProdukt = new javax.swing.JMenuItem();
         wyswietlTwojeProduktyOpen = new javax.swing.JMenuItem();
         przepisykulinarneMenu = new javax.swing.JMenu();
         dodajPrzepisOpen = new javax.swing.JMenuItem();
         wyswietlPrzepisy = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        aktywnosciMenu = new javax.swing.JMenu();
+        aktywnoscWyswietl = new javax.swing.JMenuItem();
+        rankingWyswietl = new javax.swing.JMenuItem();
 
         addtUserJFrame.setTitle("Dodaj nowego użytkownika");
         addtUserJFrame.setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -248,7 +310,7 @@ public class NewApplication extends javax.swing.JFrame {
 
         addUserJFramePodajImieLabel.setText("Podaj imię");
 
-        addUserJFramePodajNazwiskoLabel.setText("Podaj nazwisko");
+        addUserJFramePodajNazwiskoLabel.setText("Podaj hasło");
 
         addUserJFramePodajNickLabel.setText("Podaj nick");
 
@@ -406,7 +468,7 @@ public class NewApplication extends javax.swing.JFrame {
         );
 
         addProductOsAddPrzepisSkladnikFrame.setTitle("Dodaj produkt spożywczy");
-        addProductOsAddPrzepisSkladnikFrame.setMinimumSize(new java.awt.Dimension(420, 403));
+        addProductOsAddPrzepisSkladnikFrame.setMinimumSize(new java.awt.Dimension(500, 423));
         addProductOsAddPrzepisSkladnikFrame.setResizable(false);
         this.addProductOsAddPrzepisSkladnikFrame.setLocationRelativeTo(null);
 
@@ -474,7 +536,7 @@ public class NewApplication extends javax.swing.JFrame {
 
         jLabel1.setText("Podaj ilość");
 
-        podajDateWaznosciLabel.setText("Podaj datę ważności");
+        podajDateWaznosciLabel.setText("Podaj datę ważności [rrrr-mm-dd]");
 
         javax.swing.GroupLayout addProductOsAddPrzepisSkladnikFrameLayout = new javax.swing.GroupLayout(addProductOsAddPrzepisSkladnikFrame.getContentPane());
         addProductOsAddPrzepisSkladnikFrame.getContentPane().setLayout(addProductOsAddPrzepisSkladnikFrameLayout);
@@ -484,11 +546,6 @@ public class NewApplication extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
-                            .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dodawanieProduktJednostka, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap())
                         .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
                             .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
@@ -500,7 +557,7 @@ public class NewApplication extends javax.swing.JFrame {
                             .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
                                     .addComponent(podajDateWaznosciLabel)
-                                    .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGap(0, 140, Short.MAX_VALUE))
                                 .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
                                     .addGap(6, 6, 6)
                                     .addComponent(addProductOsDataWaznosci, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -508,10 +565,17 @@ public class NewApplication extends javax.swing.JFrame {
                                     .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(dodajPrzepisDodajSkladnikButton)
                                         .addComponent(addProduktButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addContainerGap()))))
+                                    .addContainerGap())))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
                         .addComponent(jButton5)
                         .addGap(29, 29, 29))))
+            .addGroup(addProductOsAddPrzepisSkladnikFrameLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(dodawanieProduktJednostka, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         addProductOsAddPrzepisSkladnikFrameLayout.setVerticalGroup(
             addProductOsAddPrzepisSkladnikFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,7 +602,7 @@ public class NewApplication extends javax.swing.JFrame {
         );
 
         addProductJednostkaFrame.setTitle("Kreator dodawania nowego produktu z jednostką");
-        addProductJednostkaFrame.setMinimumSize(new java.awt.Dimension(450, 220));
+        addProductJednostkaFrame.setMinimumSize(new java.awt.Dimension(500, 280));
         addProductJednostkaFrame.setResizable(false);
         this.addProductJednostkaFrame.setLocationRelativeTo(null);
 
@@ -595,7 +659,7 @@ public class NewApplication extends javax.swing.JFrame {
         addProductJednostkaFrameLayout.setHorizontalGroup(
             addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductJednostkaFrameLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -604,39 +668,34 @@ public class NewApplication extends javax.swing.JFrame {
                         .addComponent(jButton4)
                         .addGap(23, 23, 23))
                     .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(wybieranieProduktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel5)))
-                        .addGap(18, 18, 18)
-                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(wybieranieJednostki, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
+                                    .addComponent(wybieranieProduktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel2)))
-                                .addGap(36, 36, 36))
-                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel5)))
+                                .addGap(18, 18, 18)
+                                .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(wybieranieJednostki, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
                                 .addGap(22, 22, 22)
-                                .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dodawanieJednostki, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(dodawanieProduktu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addProductJednostkaFrameLayout.createSequentialGroup()
-                                        .addComponent(sugerowanaCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(sugerowanaCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addProductJednostkaFrameLayout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addComponent(jLabel2)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                                                .addGap(16, 16, 16)
-                                                .addComponent(jLabel3))
-                                            .addGroup(addProductJednostkaFrameLayout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(liczbaKalorii, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addContainerGap(19, Short.MAX_VALUE))))))
+                                            .addComponent(liczbaKalorii, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3)))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(dodawanieProduktu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dodawanieJednostki, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(78, Short.MAX_VALUE))))
         );
         addProductJednostkaFrameLayout.setVerticalGroup(
             addProductJednostkaFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -667,7 +726,7 @@ public class NewApplication extends javax.swing.JFrame {
         );
 
         wyswietlTwojeRekwizytyFrame.setTitle("Twoje rekwizyty");
-        wyswietlTwojeRekwizytyFrame.setMinimumSize(new java.awt.Dimension(393, 344));
+        wyswietlTwojeRekwizytyFrame.setMinimumSize(new java.awt.Dimension(400, 360));
         this.wyswietlTwojeRekwizytyFrame.setLocationRelativeTo(null);
 
         zamknijWyswietlTwojeRekwizytyFrame.setText("OK");
@@ -713,7 +772,7 @@ public class NewApplication extends javax.swing.JFrame {
         );
 
         wyswietlTwojeProduktyFrame.setTitle("Wyświetl Twoje produkty");
-        wyswietlTwojeProduktyFrame.setMinimumSize(new java.awt.Dimension(388, 357));
+        wyswietlTwojeProduktyFrame.setMinimumSize(new java.awt.Dimension(560, 360));
         wyswietlTwojeProduktyFrame.setResizable(false);
         this.wyswietlTwojeProduktyFrame.setLocationRelativeTo(null);
 
@@ -741,14 +800,14 @@ public class NewApplication extends javax.swing.JFrame {
         wyswietlTwojeProduktyFrame.getContentPane().setLayout(wyswietlTwojeProduktyFrameLayout);
         wyswietlTwojeProduktyFrameLayout.setHorizontalGroup(
             wyswietlTwojeProduktyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(wyswietlTwojeProduktyFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlTwojeProduktyFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(474, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(34, 34, 34))
+            .addGroup(wyswietlTwojeProduktyFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         wyswietlTwojeProduktyFrameLayout.setVerticalGroup(
             wyswietlTwojeProduktyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -766,16 +825,12 @@ public class NewApplication extends javax.swing.JFrame {
         dodajPrzepisFrame.setResizable(false);
         this.dodajPrzepisFrame.setLocationRelativeTo(null);
 
-        czasWykonania.setText("22");
-
-        liczbaPorcji.setText("211");
         liczbaPorcji.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 liczbaPorcjiActionPerformed(evt);
             }
         });
 
-        trudnoscWykonania.setText("123");
         trudnoscWykonania.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trudnoscWykonaniaActionPerformed(evt);
@@ -841,30 +896,24 @@ public class NewApplication extends javax.swing.JFrame {
 
         jLabel7.setText("Nazwa przepisu");
 
-        jLabel8.setText("Czas wykonania");
+        jLabel8.setText("Czas wykonania [min]");
 
         jLabel9.setText("L. porcji");
 
-        jLabel10.setText("Trudność wykonania");
+        jLabel10.setText("Trudność wykonania[od 1 do 10]");
 
         jLabel11.setText("Wykonanie");
+
+        dataDodaniaField.setEnabled(false);
+
+        jLabel12.setText("Data dodania");
 
         javax.swing.GroupLayout dodajPrzepisFrameLayout = new javax.swing.GroupLayout(dodajPrzepisFrame.getContentPane());
         dodajPrzepisFrame.getContentPane().setLayout(dodajPrzepisFrameLayout);
         dodajPrzepisFrameLayout.setHorizontalGroup(
             dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(dodajSkladnikiDoPrzepisuButton)
-                        .addGap(180, 180, 180)
-                        .addComponent(dodajRekwizytyDoPrzepisuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
                         .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
@@ -879,15 +928,30 @@ public class NewApplication extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
                                 .addGap(46, 46, 46)
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel10)))))
+                                .addComponent(jLabel10))
+                            .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dataDodaniaField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)))
+                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(dodajSkladnikiDoPrzepisuButton)
+                        .addGap(180, 180, 180)
+                        .addComponent(dodajRekwizytyDoPrzepisuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1)
                 .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dodajPrzepisFrameLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
@@ -897,7 +961,7 @@ public class NewApplication extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(zamknijDodajPrzepisFrame))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(14, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dodajPrzepisFrameLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel11)
@@ -911,14 +975,16 @@ public class NewApplication extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nazwaPrzepisu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(czasWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(liczbaPorcji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(trudnoscWykonania, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataDodaniaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(dodajPrzepisFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
@@ -933,7 +999,8 @@ public class NewApplication extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        wyswietlPrzepisyFrame.setMinimumSize(new java.awt.Dimension(500, 300));
+        wyswietlPrzepisyFrame.setTitle("Przepisy kulinarne");
+        wyswietlPrzepisyFrame.setMinimumSize(new java.awt.Dimension(500, 360));
 
         wyswietlPrzepisyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -997,6 +1064,8 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
 
+        priorytetLabel.setText("---");
+
         javax.swing.GroupLayout wyswietlPrzepisyFrameLayout = new javax.swing.GroupLayout(wyswietlPrzepisyFrame.getContentPane());
         wyswietlPrzepisyFrame.getContentPane().setLayout(wyswietlPrzepisyFrameLayout);
         wyswietlPrzepisyFrameLayout.setHorizontalGroup(
@@ -1009,16 +1078,20 @@ public class NewApplication extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(wyswietlPrzepisyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(wyswietlPrzepisyZamknij)
+                            .addComponent(wyswietlPrzepisyCenaKalorie)
                             .addGroup(wyswietlPrzepisyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(wyswietlPrzepisyDodajUlubione, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(wyswietlPrzepisyUsunPrzepisButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(wyswietlPrzepisyobejrzyjPrzepisButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(wyswietlPrzepisyDodajUlubione)
-                            .addComponent(wyswietlPrzepisyCenaKalorie)))
+                                .addComponent(wyswietlPrzepisyobejrzyjPrzepisButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(wyswietlPrzepisyFrameLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(wyswietlMojePrzepisyCheckButton)
                         .addGap(18, 18, 18)
-                        .addComponent(wyswietlPrzepisyPokazUlubione)))
+                        .addGroup(wyswietlPrzepisyFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(wyswietlPrzepisyFrameLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(priorytetLabel))
+                            .addComponent(wyswietlPrzepisyPokazUlubione))))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
         wyswietlPrzepisyFrameLayout.setVerticalGroup(
@@ -1029,6 +1102,8 @@ public class NewApplication extends javax.swing.JFrame {
                     .addComponent(wyswietlMojePrzepisyCheckButton)
                     .addComponent(wyswietlPrzepisyPokazUlubione))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(priorytetLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wyswietlPrzepisyFrameLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1044,24 +1119,103 @@ public class NewApplication extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        aktywnoscPokazFrame.setTitle("Aktywności");
+        aktywnoscPokazFrame.setMinimumSize(new java.awt.Dimension(560, 380));
+
+        rankingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane8.setViewportView(rankingTable);
+
+        rankingZamknij.setText("Zamknij");
+        rankingZamknij.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rankingZamknijActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout aktywnoscPokazFrameLayout = new javax.swing.GroupLayout(aktywnoscPokazFrame.getContentPane());
+        aktywnoscPokazFrame.getContentPane().setLayout(aktywnoscPokazFrameLayout);
+        aktywnoscPokazFrameLayout.setHorizontalGroup(
+            aktywnoscPokazFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aktywnoscPokazFrameLayout.createSequentialGroup()
+                .addGap(304, 304, 304)
+                .addComponent(rankingZamknij)
+                .addContainerGap(141, Short.MAX_VALUE))
+            .addGroup(aktywnoscPokazFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8)
+                .addContainerGap())
+        );
+        aktywnoscPokazFrameLayout.setVerticalGroup(
+            aktywnoscPokazFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aktywnoscPokazFrameLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(rankingZamknij)
+                .addContainerGap())
+        );
+
+        rankingPrawdziwy.setTitle("Ranking");
+        rankingPrawdziwy.setMinimumSize(new java.awt.Dimension(500, 300));
+
+        rankingPrawdziwyTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane9.setViewportView(rankingPrawdziwyTable);
+
+        rankingPrawdziwyZamknij.setText("Zamknij");
+        rankingPrawdziwyZamknij.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rankingPrawdziwyZamknijActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout rankingPrawdziwyLayout = new javax.swing.GroupLayout(rankingPrawdziwy.getContentPane());
+        rankingPrawdziwy.getContentPane().setLayout(rankingPrawdziwyLayout);
+        rankingPrawdziwyLayout.setHorizontalGroup(
+            rankingPrawdziwyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rankingPrawdziwyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rankingPrawdziwyZamknij)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        rankingPrawdziwyLayout.setVerticalGroup(
+            rankingPrawdziwyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rankingPrawdziwyLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(rankingPrawdziwyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rankingPrawdziwyLayout.createSequentialGroup()
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rankingPrawdziwyLayout.createSequentialGroup()
+                        .addComponent(rankingPrawdziwyZamknij)
+                        .addGap(57, 57, 57))))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Książka kucharska");
 
-        jButton1.setText("Połącz z bazą");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Rozłącz z bazą");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        Komunikat.setText("Hejka");
+        ifZalogowanyLabel.setText("Niezalogowany");
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Użytkownik");
@@ -1075,19 +1229,23 @@ public class NewApplication extends javax.swing.JFrame {
         });
         fileMenu.add(openMenuItem);
 
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Zmień uzytkownika");
-        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        zalogujMenu.setMnemonic('s');
+        zalogujMenu.setText("Zaloguj");
+        zalogujMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveMenuItemActionPerformed(evt);
+                zalogujMenuActionPerformed(evt);
             }
         });
-        fileMenu.add(saveMenuItem);
+        fileMenu.add(zalogujMenu);
 
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
-        fileMenu.add(saveAsMenuItem);
+        wylogujMenu.setMnemonic('a');
+        wylogujMenu.setText("Wyloguj");
+        wylogujMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wylogujMenuActionPerformed(evt);
+            }
+        });
+        fileMenu.add(wylogujMenu);
 
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
@@ -1120,14 +1278,6 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
         rekwizytyOsoby.add(wyswietlTwojeRekwizytyOpen);
-
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        rekwizytyOsoby.add(pasteMenuItem);
-
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        rekwizytyOsoby.add(deleteMenuItem);
 
         menuBar.add(rekwizytyOsoby);
 
@@ -1174,8 +1324,25 @@ public class NewApplication extends javax.swing.JFrame {
 
         menuBar.add(przepisykulinarneMenu);
 
-        jMenu1.setText("jMenu1");
-        menuBar.add(jMenu1);
+        aktywnosciMenu.setText("Aktywności");
+
+        aktywnoscWyswietl.setText("Pokaż aktywności");
+        aktywnoscWyswietl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aktywnoscWyswietlActionPerformed(evt);
+            }
+        });
+        aktywnosciMenu.add(aktywnoscWyswietl);
+
+        rankingWyswietl.setText("Ranking");
+        rankingWyswietl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rankingWyswietlActionPerformed(evt);
+            }
+        });
+        aktywnosciMenu.add(rankingWyswietl);
+
+        menuBar.add(aktywnosciMenu);
 
         setJMenuBar(menuBar);
 
@@ -1183,31 +1350,17 @@ public class NewApplication extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(Komunikat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(317, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(komunikatBledy)
-                .addGap(43, 43, 43))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(350, Short.MAX_VALUE)
+                .addComponent(ifZalogowanyLabel)
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(komunikatBledy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Komunikat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(196, Short.MAX_VALUE)
+                .addComponent(ifZalogowanyLabel)
+                .addContainerGap())
         );
 
         pack();
@@ -1219,35 +1372,12 @@ public class NewApplication extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            
-            psql.connect();
-           // psql.viewTable();
-        } catch (InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //psql.disconnect();
-        String[] dane={"ret"};
-        
-        try {
-            this.Komunikat.setText(psql.getRows("return_text(1) as ret", dane)[0][0].toString());
-        } catch (SQLException ex) {
-            //Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
-            this.komunikatBledy.setText(ex.getMessage().substring(42));
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         addtUserJFrame.show();
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         addtUserJFrame.dispose();
-        Komunikat.setText("Zamknieto okno");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserActionPerformed
@@ -1255,7 +1385,7 @@ public class NewApplication extends javax.swing.JFrame {
         psql.dodajUzytkownika("Osoby","",PodajImie.getText(),PodajNazwisko.getText(),PodajNick.getText());
     }//GEN-LAST:event_AddUserActionPerformed
 
-    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+    private void zalogujMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zalogujMenuActionPerformed
         JDialog.setDefaultLookAndFeelDecorated(true);
     //Object[][] selectionValues=psql.getUzytkownicy();
         Object[] selectionValues=psql.getElementOfTable("osoby", "nick","");
@@ -1263,13 +1393,47 @@ public class NewApplication extends javax.swing.JFrame {
     Object selection = JOptionPane.showInputDialog(null, "Wybierz użytkownika",
         "Wybierz użytkownika", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
     System.out.println(selection);
-    id_user=psql.getElementOfTable("osoby", "id_osoba","nick=\'"+selection.toString()+"\'")[0].toString();
-    if(id_user!=null) {
-        rekwizytyOsoby.setEnabled(true);
-        yourproducts.setEnabled(true);
-        this.setTitle("Książka kucharska - Profil "+psql.getElementOfTable("osoby", "nick","id_osoba=\'"+id_user+"\'")[0].toString());
+    String id_user2=psql.getElementOfTable("osoby", "id_osoba","nick=\'"+selection.toString()+"\'")[0].toString();
+    if(id_user2!=null) {
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Enter a password:");
+        JPasswordField pass = new JPasswordField(40);
+        panel.add(label);
+        panel.add(pass);
+        String[] options = new String[]{"OK", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "Podaj hasło",
+                                 JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                                 null, options, options[1]);
+        if(option == 0) // pressing OK button
+        {
+            char[] password = pass.getPassword();
+            String pas=password.toString();
+            String[] atr={"haslo"};
+            Object[][] obj=null;
+            try {
+                obj=psql.getRows("osoby where id_osoba="+id_user2,atr);
+                System.out.println(obj[0][0].toString());
+                if(obj[0][0].toString().equals(new String(password))){
+                    rekwizytyOsoby.setEnabled(true);
+                    yourproducts.setEnabled(true);
+                    this.setTitle("Książka kucharska - Profil "+psql.getElementOfTable("osoby", "nick","id_osoba=\'"+id_user2+"\'")[0].toString());
+                    this.ustawDostep(true);
+                    id_user=id_user2;
+                    this.zalogujMenu.setEnabled(false);
+                    this.wylogujMenu.setEnabled(true);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+        
+        
+        
+        
     }  
-    }//GEN-LAST:event_saveMenuItemActionPerformed
+    }//GEN-LAST:event_zalogujMenuActionPerformed
 
     private void dodajRekwizytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajRekwizytActionPerformed
         this.checkRekOpt.setSelected(false);
@@ -1293,6 +1457,7 @@ public class NewApplication extends javax.swing.JFrame {
        com.addItems(wybieranieRekwizytu, selectionValues);
        //wybieranieRekwizytu.setModel(new DefaultComboBoxModel(selectionValues));
        wybieranieRekwizytu.setVisible(false);
+       NazwaRekwizytu.setVisible(true);
     }//GEN-LAST:event_dodajRekwizytActionPerformed
 
     private void wybieranieRekwizytuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wybieranieRekwizytuActionPerformed
@@ -1396,6 +1561,12 @@ public class NewApplication extends javax.swing.JFrame {
         }
         jTable1.setModel(model);
         jTable1.setSelectionModel(new ClassListSelectionModel());
+        jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+        jTable1.getColumnModel().getColumn(1).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(1).setMaxWidth(0);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
         jTable1.repaint();
         addProductOsAddPrzepisSkladnikFrame.show();
        
@@ -1478,6 +1649,12 @@ public class NewApplication extends javax.swing.JFrame {
         }
         jTable1.setModel(model);
         jTable1.setSelectionModel(new ClassListSelectionModel());
+        jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+        jTable1.getColumnModel().getColumn(1).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(1).setMaxWidth(0);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
         jTable1.repaint();
         if(!info.isEmpty()){
                 JOptionPane.showMessageDialog(null, info,"Informacja",
@@ -1518,6 +1695,9 @@ public class NewApplication extends javax.swing.JFrame {
             }
             this.wyswietlTwojeProduktyTable.setModel(model);
             this.wyswietlTwojeProduktyTable.setSelectionModel(new ClassListSelectionModel());
+            wyswietlTwojeProduktyTable.getColumnModel().getColumn(0).setMinWidth(0);
+            wyswietlTwojeProduktyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            wyswietlTwojeProduktyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
             this.wyswietlTwojeProduktyTable.repaint();
             
         }
@@ -1582,6 +1762,9 @@ public class NewApplication extends javax.swing.JFrame {
         }
         this.wyswietlTwojeProduktyTable.setModel(model);
         this.wyswietlTwojeProduktyTable.setSelectionModel(new ClassListSelectionModel());
+        wyswietlTwojeProduktyTable.getColumnModel().getColumn(0).setMinWidth(0);
+        wyswietlTwojeProduktyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        wyswietlTwojeProduktyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         this.wyswietlTwojeProduktyTable.repaint();
     }//GEN-LAST:event_wyswietlTwojeProduktyOpenActionPerformed
 
@@ -1714,7 +1897,8 @@ public class NewApplication extends javax.swing.JFrame {
         String info=new String("");
         if(this.jTable1.getSelectedRowCount()==1){
             SkladnikiJednostkaTableModel mod= (SkladnikiJednostkaTableModel)this.dodajPrzepisdodajSkladnikiTable.getModel();
-            Object dan[]={this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0),
+            Object dan[]={0,
+                this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0),
                 this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1),
                 this.jTable1.getValueAt(this.jTable1.getSelectedRow(),3),
                 this.dodajPrzepisdodajSkladnikIlosc.getText(),
@@ -1722,8 +1906,8 @@ public class NewApplication extends javax.swing.JFrame {
                 this.jTable1.getValueAt(this.jTable1.getSelectedRow(),4),
                 this.jTable1.getValueAt(this.jTable1.getSelectedRow(),5)
                 };
-                    if(mod.isInColumn(0, this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0)) &&
-                            mod.isInColumn(1, this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1))){
+                    if(mod.isInColumn(1, this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1)) &&
+                            mod.isInColumn(2, this.jTable1.getValueAt(this.jTable1.getSelectedRow(),2))){
                         info=info+"Mamy juz pozycję o takiej nazwie składnika i nazwie jednostki. "
                     + "Nie dodano danych do przechowalni składników przepisu\n";
                     }
@@ -1763,14 +1947,13 @@ public class NewApplication extends javax.swing.JFrame {
             catch(Exception ex){
                 info=info+"przepisy_kulinarne: "+ex.getMessage()+"\n";
             }
-           // dodajPrzepisdodajSkladnikiTable
             for(int i=0;i<this.dodajPrzepisdodajSkladnikiTable.getModel().getRowCount();i++){
                 String[] atr={"id_produkt","id_jednostka","id_przepis","ilosc"};
                 String[] values={
-                this.dodajPrzepisdodajSkladnikiTable.getModel().getValueAt(i, 0).toString(),
                 this.dodajPrzepisdodajSkladnikiTable.getModel().getValueAt(i, 1).toString(),
+                this.dodajPrzepisdodajSkladnikiTable.getModel().getValueAt(i, 2).toString(),
                 id_przepisu,
-                this.dodajPrzepisdodajSkladnikiTable.getModel().getValueAt(i, 3).toString()
+                this.dodajPrzepisdodajSkladnikiTable.getModel().getValueAt(i, 4).toString()
                 };
                 System.out.println("id_przepisu: "+ id_przepisu);
                 try{
@@ -1808,6 +1991,8 @@ public class NewApplication extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
                 
         }
+        refreshRankingTable();
+        refreshRankingTablePrawdziwy();
     }//GEN-LAST:event_dodajPrzepisButtonActionPerformed
 
     private void trudnoscWykonaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trudnoscWykonaniaActionPerformed
@@ -1866,6 +2051,8 @@ public class NewApplication extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
                 
         }
+        refreshRankingTable();
+        refreshRankingTablePrawdziwy();
     }//GEN-LAST:event_wyswietlPrzepisyUsunPrzepisButtonActionPerformed
 
     private void wyswietlPrzepisyobejrzyjPrzepisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wyswietlPrzepisyobejrzyjPrzepisButtonActionPerformed
@@ -1890,6 +2077,7 @@ public class NewApplication extends javax.swing.JFrame {
             this.liczbaPorcji.setText(selectionValues[0][4].toString());
             this.trudnoscWykonania.setText(selectionValues[0][5].toString());
             this.czasWykonania.setText(selectionValues[0][2].toString());
+            this.dataDodaniaField.setText(selectionValues[0][3].toString());
             //pelny_produkt_jednostka
             String[] dane2={
                 "id_przepis",
@@ -1950,7 +2138,12 @@ public class NewApplication extends javax.swing.JFrame {
             if(wyswietlPrzepisyDodajUlubione.getText().equals("Like")){
                 System.out.println("Mozna go dodac do ulubionych");
                 String[] atrybuty={"id_osoba","id_przepis","priorytet"};
-                String[] wartosci={id_user,
+                Object[] selectionValues = { "1", "2", "3","4","5","6","7","8","9","10" };
+                String initialSelection = "1";
+                Object selection = JOptionPane.showInputDialog(null, "Wybierz priorytet",
+        "Wybierz priorytet", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+                if(selection!=null){
+                    String[] wartosci={id_user,
                 wyswietlPrzepisyTable.getModel().getValueAt(wyswietlPrzepisyTable.getSelectedRow(),0).toString(),
                 "5"};
                 try {
@@ -1959,6 +2152,11 @@ public class NewApplication extends javax.swing.JFrame {
                     info=info+"Ulubione"+ex.getMessage();
                     wyswietlPrzepisyDodajUlubione.setText("Dislike");
                 }
+                }
+                else{
+                    info=info+"Nie wybrales priorytetu\n";
+                }
+                
                 
                 
             }
@@ -1982,6 +2180,8 @@ public class NewApplication extends javax.swing.JFrame {
                 
             }
             refreshWyswietlPrzepisyTable2("przepis_autor");
+            refreshRankingTable();
+            refreshRankingTablePrawdziwy();
         }
     }//GEN-LAST:event_wyswietlPrzepisyDodajUlubioneActionPerformed
 
@@ -2029,6 +2229,35 @@ public class NewApplication extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_wyswietlPrzepisyCenaKalorieActionPerformed
+
+    private void rankingWyswietlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingWyswietlActionPerformed
+        this.rankingPrawdziwy.setVisible(true);
+        refreshRankingTablePrawdziwy();
+    }//GEN-LAST:event_rankingWyswietlActionPerformed
+
+    private void rankingZamknijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingZamknijActionPerformed
+        this.aktywnoscPokazFrame.setVisible(false);
+    }//GEN-LAST:event_rankingZamknijActionPerformed
+
+    private void aktywnoscWyswietlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aktywnoscWyswietlActionPerformed
+        refreshRankingTable();
+        refreshRankingTablePrawdziwy();
+        this.aktywnoscPokazFrame.setVisible(true);
+    }//GEN-LAST:event_aktywnoscWyswietlActionPerformed
+
+    private void wylogujMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wylogujMenuActionPerformed
+        rekwizytyOsoby.setEnabled(false);
+                    yourproducts.setEnabled(false);
+                    this.setTitle("Książka kucharska - Profil ogólny");
+                    this.ustawDostep(false);
+                    id_user=null;
+                    this.zalogujMenu.setEnabled(true);
+                    this.wylogujMenu.setEnabled(false);
+    }//GEN-LAST:event_wylogujMenuActionPerformed
+
+    private void rankingPrawdziwyZamknijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingPrawdziwyZamknijActionPerformed
+        this.rankingPrawdziwy.setVisible(false);
+    }//GEN-LAST:event_rankingPrawdziwyZamknijActionPerformed
     
     
     /**
@@ -2071,7 +2300,6 @@ public class NewApplication extends javax.swing.JFrame {
     private String imieUser;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddUser;
-    private javax.swing.JTextField Komunikat;
     private javax.swing.JTextField NazwaRekwizytu;
     private javax.swing.JTextField PodajImie;
     private javax.swing.JTextField PodajNazwisko;
@@ -2087,9 +2315,12 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JLabel addUserJFramePodajNazwiskoLabel;
     private javax.swing.JLabel addUserJFramePodajNickLabel;
     private javax.swing.JFrame addtUserJFrame;
+    private javax.swing.JFrame aktywnoscPokazFrame;
+    private javax.swing.JMenuItem aktywnoscWyswietl;
+    private javax.swing.JMenu aktywnosciMenu;
     private javax.swing.JCheckBox checkRekOpt;
     private javax.swing.JTextField czasWykonania;
-    private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JTextField dataDodaniaField;
     private javax.swing.JMenuItem dodajProdukt;
     private javax.swing.JButton dodajPrzepisButton;
     private javax.swing.JTable dodajPrzepisDodajRekwizytTable;
@@ -2109,10 +2340,9 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JButton dodawanieProduktuJedDoBazy;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JLabel ifZalogowanyLabel;
     private javax.swing.JTextField ilosc;
     private javax.swing.JLabel iloscRekwizytowLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -2121,6 +2351,7 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2129,7 +2360,6 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2137,8 +2367,9 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField komunikatBledy;
     private javax.swing.JTextField liczbaKalorii;
     private javax.swing.JTextField liczbaPorcji;
     private javax.swing.JMenuBar menuBar;
@@ -2146,17 +2377,22 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JLabel nazwaRekwizytuLabel;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JTextPane opisWykonania;
-    private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JLabel podajDateWaznosciLabel;
+    private javax.swing.JLabel priorytetLabel;
     private javax.swing.JMenu przepisykulinarneMenu;
+    private javax.swing.JFrame rankingPrawdziwy;
+    private javax.swing.JTable rankingPrawdziwyTable;
+    private javax.swing.JButton rankingPrawdziwyZamknij;
+    private javax.swing.JTable rankingTable;
+    private javax.swing.JMenuItem rankingWyswietl;
+    private javax.swing.JButton rankingZamknij;
     private javax.swing.JMenu rekwizytyOsoby;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JTextField sugerowanaCena;
     private javax.swing.JTextField trudnoscWykonania;
     private javax.swing.JComboBox wybieranieJednostki;
     private javax.swing.JComboBox wybieranieProduktu2;
     private javax.swing.JComboBox wybieranieRekwizytu;
+    private javax.swing.JMenuItem wylogujMenu;
     private javax.swing.JCheckBox wyswietlMojePrzepisyCheckButton;
     private javax.swing.JMenuItem wyswietlPrzepisy;
     private javax.swing.JButton wyswietlPrzepisyCenaKalorie;
@@ -2174,6 +2410,7 @@ public class NewApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem wyswietlTwojeRekwizytyOpen;
     private javax.swing.JTable wyswietlTwojeRekwizytyTable;
     private javax.swing.JMenu yourproducts;
+    private javax.swing.JMenuItem zalogujMenu;
     private javax.swing.JButton zamknijDodajPrzepisFrame;
     private javax.swing.JButton zamknijWyswietlTwojeRekwizytyFrame;
     // End of variables declaration//GEN-END:variables
@@ -2208,6 +2445,9 @@ public class NewApplication extends javax.swing.JFrame {
         model.fireTableDataChanged();
         this.wyswietlPrzepisyTable.setModel(model);
         this.wyswietlPrzepisyTable.setSelectionModel(new ClassListSelectionModel());
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setMinWidth(0);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         
     }
     private void refreshWyswietlPrzepisyTable2(String tabelaWar){
@@ -2258,6 +2498,44 @@ public class NewApplication extends javax.swing.JFrame {
         model.fireTableDataChanged();
         this.wyswietlPrzepisyTable.setModel(model);
         this.wyswietlPrzepisyTable.setSelectionModel(new ClassListSelectionModel());
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setMinWidth(0);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        wyswietlPrzepisyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+    }
+    private void refreshRankingTable(){
+        String arg=new String("");
+        String tabelaWar="aktywnosc_osoba";
+        String dane[]={"id_aktywnosc","zdarzenie","nick"};
+        SkladnikiJednostkaTableModel model = null;
+        try {
+            model = new SkladnikiJednostkaTableModel(psql.getRows(tabelaWar+arg, dane),dane);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.fireTableDataChanged();
+        this.rankingTable.setModel(model);
+        this.rankingTable.setSelectionModel(new ClassListSelectionModel());
+        rankingTable.getColumnModel().getColumn(0).setMinWidth(0);
+        rankingTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        rankingTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        this.rankingTable.repaint();
+        
+    }
+    private void refreshRankingTablePrawdziwy(){
+        String arg=new String("");
+        String tabelaWar="nick_liczba_przepisow_function()";
+        String dane[]={"nick","liczba_przepisow"};
+        SkladnikiJednostkaTableModel model = null;
+        try {
+            model = new SkladnikiJednostkaTableModel(psql.getRows(tabelaWar+arg, dane),dane);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.fireTableDataChanged();
+        this.rankingPrawdziwyTable.setModel(model);
+        this.rankingPrawdziwyTable.setSelectionModel(new ClassListSelectionModel());
+        this.rankingPrawdziwyTable.repaint();
         
     }
     public void dodajPrzepisFrameClear(){
@@ -2301,5 +2579,22 @@ public class NewApplication extends javax.swing.JFrame {
         this.czasWykonania.setEnabled(flag);
         this.dodajSkladnikiDoPrzepisuButton.setVisible(flag);
         this.dodajRekwizytyDoPrzepisuButton.setVisible(flag);
+    }
+    public void ustawDostep(boolean flaga){
+        this.rekwizytyOsoby.setEnabled(flaga);
+        this.yourproducts.setEnabled(flaga);
+        this.dodajPrzepisOpen.setEnabled(flaga);
+        this.aktywnoscWyswietl.setEnabled(flaga);
+        this.wyswietlMojePrzepisyCheckButton.setEnabled(flaga);
+        this.wyswietlPrzepisyPokazUlubione.setEnabled(flaga);
+        this.wyswietlPrzepisyDodajUlubione.setEnabled(flaga);
+        if(flaga){
+            this.ifZalogowanyLabel.setText("Zalogowany");
+        }
+        else{
+            this.ifZalogowanyLabel.setText("Niezalogowany");
+        }
+        
+        
     }
 } 
