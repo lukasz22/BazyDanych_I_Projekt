@@ -3,11 +3,9 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="0,0" last-zoom="0.85"
-	 default-schema="public" default-owner="postgres">
+<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="426,0" last-zoom="0.85"
+	 default-schema="public">
 <database name="BazaPGModeler_2" append-at-eod="true">
-	<role name="postgres"/>
-	<tablespace name="pg_default"/>
 	<appended-sql><![CDATA[insert into osoby values('1','Tomek','tbajorek','tbajorek');
 insert into osoby values('2','Kamil','mario','mario');
 insert into osoby values('3','Łukasz','luki','luki');
@@ -201,13 +199,11 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
 	<schema name="public"/>
-	<role name="postgres"/>
 </sequence>
 
 <table name="przepisy_kulinarne">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="975.843" y="199.824"/>
+	<position x="1065.25" y="251.589"/>
 	<column name="id_przepis" not-null="true" sequence="public.przepisy_kulinarne_id_przepis_seq">
 		<type name="integer"/>
 	</column>
@@ -251,8 +247,7 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 
 <table name="skladniki_przepisu">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="760.868" y="26.2352"/>
+	<position x="850.28" y="77.9999"/>
 	<column name="id_produkt" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -278,13 +273,11 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
 	<schema name="public"/>
-	<role name="postgres"/>
 </sequence>
 
 <table name="produkty_spozywcze_jednostka">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="526.426" y="189.706"/>
+	<position x="615.838" y="241.471"/>
 	<column name="id_produkt" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -313,13 +306,11 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
 	<schema name="public"/>
-	<role name="postgres"/>
 </sequence>
 
 <table name="osoby">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1092.17" y="495.353"/>
+	<position x="1181.58" y="547.118"/>
 	<column name="id_osoba" not-null="true" sequence="public.osoby_id_osoba_seq">
 		<type name="integer"/>
 	</column>
@@ -345,40 +336,11 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
 	<schema name="public"/>
-	<role name="postgres"/>
 </sequence>
-
-<table name="kategorie_przepisow">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1485.64" y="74.4117"/>
-	<column name="id_kategorie_przepisow" not-null="true" sequence="public.kategorie_przepisow_id_kategorie_przepisow_seq">
-		<type name="integer"/>
-	</column>
-	<column name="nazwa" not-null="true">
-		<type name="character varying" length="30"/>
-	</column>
-	<constraint name="Kategorie_przepisów_PK" type="pk-constr" table="public.kategorie_przepisow">
-		<columns names="id_kategorie_przepisow" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<table name="many_Kategorie_przepisów_has_many_Przepisy_kulinarne">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="39.1973" y="252.812"/>
-	<column name="id_kategorie_przepisow_kategorie_przepisow" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="id_przepis_przepisy_kulinarne" not-null="true">
-		<type name="integer"/>
-	</column>
-</table>
 
 <table name="zbiory_rekwizytow">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1181.6" y="40.8117"/>
+	<position x="1271.01" y="92.5764"/>
 	<column name="id_przepis" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -395,8 +357,7 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 
 <table name="rekwizyt_osoby">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1452.24" y="343.812"/>
+	<position x="1541.65" y="395.577"/>
 	<column name="wlasciciel" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -416,8 +377,7 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 
 <table name="ulubione">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="597.465" y="294.106"/>
+	<position x="686.877" y="345.871"/>
 	<column name="id_osoba" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -440,13 +400,11 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
 	<schema name="public"/>
-	<role name="postgres"/>
 </sequence>
 
 <table name="rekwizyt">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1543.22" y="214.812"/>
+	<position x="1633.81" y="266.577"/>
 	<column name="id_rekwizyt" not-null="true" sequence="public.rekwizyt_id_rekwizyt_seq">
 		<type name="integer"/>
 	</column>
@@ -463,8 +421,7 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 
 <table name="przedmiot_osoby">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="572.196" y="439.212"/>
+	<position x="661.608" y="490.977"/>
 	<column name="ilosc" not-null="true">
 		<type name="numeric" length="6" precision="2"/>
 	</column>
@@ -493,13 +450,11 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
 	<schema name="public"/>
-	<role name="postgres"/>
 </sequence>
 
 <table name="jednostki_miary">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="30.5883" y="86.2117"/>
+	<position x="120" y="137.976"/>
 	<column name="id_jednsotki" not-null="true" sequence="public.jednostki_miary_id_jednsotki_seq">
 		<type name="integer"/>
 	</column>
@@ -519,13 +474,11 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
 	<schema name="public"/>
-	<role name="postgres"/>
 </sequence>
 
 <table name="produkt_spozywczy">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="134.899" y="430.212"/>
+	<position x="224.311" y="481.977"/>
 	<column name="id_produkt" not-null="true" sequence="public.produkt_spozywczy_id_produkt_seq">
 		<type name="integer"/>
 	</column>
@@ -540,42 +493,10 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 	</constraint>
 </table>
 
-<function name="return_text"
-		window-func="false"
-		returns-setof="false"
-		behavior-type="CALLED ON NULL INPUT"
-		function-type="VOLATILE"
-		security-type="SECURITY INVOKER"
-		execution-cost="1"
-		row-amount="0">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<language name="plpgsql" sql-disabled="true"/>
-	<return-type>
-	<type name="text"/>
-	</return-type>
-	<parameter name="liczba">
-		<type name="integer"/>
-	</parameter>
-	<definition><![CDATA[
-begin
-if $1=1
-then
-/*
-RAISE EXCEPTION 'Nonexistent ID --> %', $1
-      USING HINT = 'Please check your user ID';
-*/
-RAISE EXCEPTION 'Siemka Kamil';
-end if;
-return 'Funkcja zwraca text';
-end;
-]]></definition>
-</function>
-
 <view name="pelny_produkt_jednostka">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="254.674" y="513.389"/>
+	<position x="344.086" y="565.154"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_produkt,
 	a.jednostka_miary,
@@ -591,8 +512,7 @@ end;
 
 <view name="rekwizyty_all_osob">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="61.002" y="372.212"/>
+	<position x="150.414" y="423.977"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_osoba,
     a.imie,
@@ -608,7 +528,6 @@ end;
 
 <usertype name="nazwa_ilosc" configuration="composite">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<typeattrib name="nazwa">
 		<type name="character varying" length="30"/>
 	</typeattrib>
@@ -626,10 +545,9 @@ end;
 		execution-cost="100"
 		row-amount="1000">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="sql" sql-disabled="true"/>
 	<return-type>
-	<type name="public.nazwa_ilosc" precision="32690"/>
+	<type name="public.nazwa_ilosc" precision="32601"/>
 	</return-type>
 	<parameter name="_param1">
 		<type name="integer"/>
@@ -641,8 +559,7 @@ where a.id_osoba=$1;]]></definition>
 
 <view name="pelne_produkty_wlascicieli">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="39.1973" y="506.612"/>
+	<position x="128.609" y="558.377"/>
 	<reference>
 		<expression><![CDATA[ SELECT b.wlasciciel,
     a.nazwa_prod,
@@ -665,7 +582,6 @@ where a.id_osoba=$1;]]></definition>
 		execution-cost="100"
 		row-amount="1000">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="sql" sql-disabled="true"/>
 	<return-type>
 	<type name="public.pelne_produkty_wlascicieli" precision="0"/>
@@ -687,7 +603,6 @@ where a.wlasciciel=$1;]]></definition>
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="text"/>
@@ -733,7 +648,6 @@ end;]]></definition>
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="numeric" length="10" precision="2"/>
@@ -772,7 +686,6 @@ end;
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="numeric" length="10" precision="2"/>
@@ -802,8 +715,7 @@ end;]]></definition>
 
 <table name="aktywnosc">
 	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1041.18" y="397.647"/>
+	<position x="1130.59" y="450.588"/>
 	<column name="id_aktywnosc" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -827,7 +739,6 @@ end;]]></definition>
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="trigger"/>
@@ -853,7 +764,6 @@ end;]]></definition>
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="trigger"/>
@@ -879,7 +789,6 @@ end;]]></definition>
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="trigger"/>
@@ -913,7 +822,6 @@ end;]]></definition>
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="trigger"/>
@@ -937,7 +845,6 @@ end;]]></definition>
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="trigger"/>
@@ -973,7 +880,6 @@ end;]]></definition>
 		execution-cost="1"
 		row-amount="0">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<language name="plpgsql" sql-disabled="true"/>
 	<return-type>
 	<type name="integer"/>
@@ -1056,7 +962,7 @@ end;]]></definition>
 </constraint>
 
 <constraint name="Ulubione3_FK" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.przepisy_kulinarne" table="public.ulubione">
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.przepisy_kulinarne" table="public.ulubione">
 	<columns names="id_przepis" ref-type="src-columns"/>
 	<columns names="id_przepis" ref-type="dst-columns"/>
 </constraint>

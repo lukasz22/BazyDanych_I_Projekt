@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.8.2-alpha1" last-position="4,0" last-zoom="0.85"
+	 default-schema="public" default-owner="postgres">
+<database name="BazaPGModeler_2" encoding="UTF-8" lc-collate="pl_PL" lc-ctype="pl_PL">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<sequence name="przepisy_kulinarne_id_przepis_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="przepisy_kulinarne">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="934" y="201"/>
+	<column name="id_przepis" not-null="true" sequence="public.przepisy_kulinarne_id_przepis_seq">
+		<type name="integer"/>
+	</column>
+	<column name="nazwa" not-null="true">
+		<type name="character varying" length="80"/>
+	</column>
+	<column name="wykonanie" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="id_skladniki_przepisu">
+		<type name="integer"/>
+	</column>
+	<column name="czas_wykonania">
+		<type name="integer"/>
+	</column>
+	<column name="id_osoba_dodajaca">
+		<type name="integer"/>
+	</column>
+	<column name="data_dodania">
+		<type name="date"/>
+	</column>
+	<column name="liczba porcji">
+		<type name="integer"/>
+	</column>
+	<column name="trudnosc_wykonania">
+		<type name="integer"/>
+	</column>
+	<constraint name="Przepisy_kulinarne_PK" type="pk-constr" table="public.przepisy_kulinarne">
+		<columns names="id_przepis" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="nazwa_przepisu_unique" type="uq-constr" table="public.przepisy_kulinarne">
+		<columns names="nazwa" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="składniki_przepisu">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="796.672" y="38"/>
+	<column name="id_produkt_jednostka" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_przepis" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="Ilość">
+		<type name="integer"/>
+	</column>
+	<constraint name="id_prod_id_przepis_PK" type="pk-constr" table="public.&quot;składniki_przepisu&quot;">
+		<columns names="id_produkt_jednostka,id_przepis" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="produkty_spozywcze_jednostka_id_produkt_jednostka_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="produkty_spozywcze_jednostka">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="531.641" y="205"/>
+	<column name="id_produkt_jednostka" not-null="true" sequence="public.produkty_spozywcze_jednostka_id_produkt_jednostka_seq">
+		<type name="integer"/>
+	</column>
+	<column name="id_produkt" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="jednostka_miary" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="sugerowana_cena_za_1_jednostke">
+		<type name="integer"/>
+	</column>
+	<column name="liczba_kcal_w_1_jednostce">
+		<type name="integer"/>
+	</column>
+	<constraint name="id_pro_PK" type="pk-constr" table="public.produkty_spozywcze_jednostka">
+		<columns names="id_produkt_jednostka" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="id_prod_unique" type="uq-constr" table="public.produkty_spozywcze_jednostka">
+		<columns names="id_produkt,jednostka_miary" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="osoby_id_osoba_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="osoby">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1137.38" y="493"/>
+	<column name="id_osoba" not-null="true" sequence="public.osoby_id_osoba_seq">
+		<type name="integer"/>
+	</column>
+	<column name="imie">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="nazwisko">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="nick" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="Osoba_PK" type="pk-constr" table="public.osoby">
+		<columns names="id_osoba" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="nick_unique" type="uq-constr" table="public.osoby">
+		<columns names="nick" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="kategorie_przepisow_id_kategorie_przepisow_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="kategorie_przepisow">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1521.44" y="85"/>
+	<column name="id_kategorie_przepisow" not-null="true" sequence="public.kategorie_przepisow_id_kategorie_przepisow_seq">
+		<type name="integer"/>
+	</column>
+	<column name="nazwa">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="Kategorie_przepisów_PK" type="pk-constr" table="public.kategorie_przepisow">
+		<columns names="id_kategorie_przepisow" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="many_Kategorie_przepisów_has_many_Przepisy_kulinarne">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="75" y="263.4"/>
+	<column name="id_kategorie_przepisow_kategorie_przepisow" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_przepis_przepisy_kulinarne" not-null="true">
+		<type name="integer"/>
+	</column>
+</table>
+
+<table name="zbiory_rekwizytów">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1217.4" y="51.4"/>
+	<column name="id_przepis" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_rekwizyt" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="Ilość">
+		<type name="integer"/>
+	</column>
+	<constraint name="zbiory_rekwizytow_PK" type="pk-constr" table="public.&quot;zbiory_rekwizytów&quot;">
+		<columns names="id_przepis,id_rekwizyt" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="rekwizyt_osoby">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1488.04" y="354.4"/>
+	<column name="wlasciciel" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_rekwizyt" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ilosc">
+		<type name="integer"/>
+	</column>
+	<constraint name="id_rekwizyt_os" type="pk-constr" table="public.rekwizyt_osoby">
+		<columns names="wlasciciel,id_rekwizyt" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="ulubione">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="662.68" y="349.4"/>
+	<column name="id_osoba" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_przepis" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="priorytet">
+		<type name="integer"/>
+	</column>
+	<constraint name="id_osoba_id_przepis_PK" type="pk-constr" table="public.ulubione">
+		<columns names="id_osoba,id_przepis" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="rekwizyt_id_rekwizyt_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="rekwizyt">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1579.02" y="225.4"/>
+	<column name="id_rekwizyt" not-null="true" sequence="public.rekwizyt_id_rekwizyt_seq">
+		<type name="integer"/>
+	</column>
+	<column name="nazwa" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="rekwizyt_pk" type="pk-constr" table="public.rekwizyt">
+		<columns names="id_rekwizyt" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="nazwa_unique" type="uq-constr" table="public.rekwizyt">
+		<columns names="nazwa" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="przedmiot_osoby">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="608" y="449.8"/>
+	<column name="ilosc">
+		<type name="integer"/>
+	</column>
+	<column name="wlasciciel" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_produkt" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="termin_waznosci">
+		<type name="date"/>
+	</column>
+	<constraint name="wlasciciel_id_produkt_PK" type="pk-constr" table="public.przedmiot_osoby">
+		<columns names="wlasciciel,id_produkt" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="jednostki_miary_id_jednsotki_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="jednostki_miary">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="66.391" y="96.8"/>
+	<column name="id_jednsotki" not-null="true" sequence="public.jednostki_miary_id_jednsotki_seq">
+		<type name="integer"/>
+	</column>
+	<column name="nazwa_jedn" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<constraint name="id_jednostki_pk" type="pk-constr" table="public.jednostki_miary">
+		<columns names="id_jednsotki" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="jednostka_unique" type="uq-constr" table="public.jednostki_miary">
+		<columns names="nazwa_jedn" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="produkt_spozywczy_id_produkt_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="produkt_spozywczy">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="170.703" y="440.8"/>
+	<column name="id_produkt" not-null="true" sequence="public.produkt_spozywczy_id_produkt_seq">
+		<type name="integer"/>
+	</column>
+	<column name="nazwa_prod" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<constraint name="id_produkt_PK" type="pk-constr" table="public.produkt_spozywczy">
+		<columns names="id_produkt" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="nazwa_uniquee" type="uq-constr" table="public.produkt_spozywczy">
+		<columns names="nazwa_prod" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<function name="rekwizyt_osoby_trigger"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<parameter name="numberOfrecords">
+		<type name="integer"/>
+	</parameter>
+	<definition><![CDATA[
+select count(*) into numberOfrecords from rekwizyt 
+where rekwizyt.nazwa=TG_ARGV[0];
+if numberOfrecords<=0
+then
+	insert into rekwizyt(nazwa) values(new.]);
+end if;
+]]></definition>
+</function>
+
+<function name="return_text"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="text"/>
+	</return-type>
+	<parameter name="liczba">
+		<type name="integer"/>
+	</parameter>
+	<definition><![CDATA[
+begin
+if $1=1
+then
+/*
+RAISE EXCEPTION 'Nonexistent ID --> %', $1
+      USING HINT = 'Please check your user ID';
+*/
+RAISE EXCEPTION 'Siemka Kamil';
+end if;
+return 'Funkcja zwraca text';
+end;
+]]></definition>
+</function>
+
+<view name="pelny_produkt_jednostka">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="77.5365" y="576.918"/>
+	<reference>
+		<expression><![CDATA[ SELECT a.id_produkt_jednostka,
+    b.nazwa_prod,
+    c.nazwa_jedn,
+    a.sugerowana_cena_za_1_jednostke,
+    a.liczba_kcal_w_1_jednostce
+   FROM ((produkty_spozywcze_jednostka a
+     JOIN jednostki_miary c ON ((a.jednostka_miary = c.id_jednsotki)))
+     JOIN produkt_spozywczy b ON ((c.id_jednsotki = b.id_produkt)));]]></expression>
+	</reference>
+</view>
+
+<view name="rekwizyty_all_osob">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="81.5106" y="639.271"/>
+	<reference>
+		<expression><![CDATA[ SELECT a.id_osoba,
+    a.imie,
+    a.nazwisko,
+    a.nick,
+    b.nazwa,
+    c.ilosc
+   FROM ((osoby a
+     JOIN rekwizyt_osoby c ON ((a.id_osoba = c.wlasciciel)))
+     JOIN rekwizyt b ON ((c.id_rekwizyt = b.id_rekwizyt)));]]></expression>
+	</reference>
+</view>
+
+<usertype name="nazwa_ilosc" configuration="composite">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<typeattrib name="nazwa">
+		<type name="character varying" length="30"/>
+	</typeattrib>
+	<typeattrib name="ilosc">
+		<type name="integer"/>
+	</typeattrib>
+</usertype>
+
+<function name="get_rekwizyty_jednej_osoby"
+		window-func="false"
+		returns-setof="true"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="1000">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="sql" sql-disabled="true"/>
+	<return-type>
+	<type name="public.nazwa_ilosc" precision="32706"/>
+	</return-type>
+	<parameter name="_param1">
+		<type name="integer"/>
+	</parameter>
+	<definition><![CDATA[
+select  a.nazwa,a.ilosc from rekwizyty_all_osob a
+where a.id_osoba=$1;]]></definition>
+</function>
+
+<view name="pelne_produkty_wlascicieli">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="75" y="517.2"/>
+	<reference>
+		<expression><![CDATA[ SELECT b.wlasciciel,
+    a.nazwa_prod,
+    b.ilosc,
+    a.nazwa_jedn,
+    a.sugerowana_cena_za_1_jednostke,
+    a.liczba_kcal_w_1_jednostce,
+    b.termin_waznosci
+   FROM (pelny_produkt_jednostka a
+     JOIN przedmiot_osoby b ON ((b.id_produkt = a.id_produkt_jednostka)));]]></expression>
+	</reference>
+</view>
+
+<function name="get_przedmioty_jednej_osoby"
+		window-func="false"
+		returns-setof="true"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="1000">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="sql" sql-disabled="true"/>
+	<return-type>
+	<type name="public.pelne_produkty_wlascicieli" precision="0"/>
+	</return-type>
+	<parameter name="_param1">
+		<type name="integer"/>
+	</parameter>
+	<definition><![CDATA[
+select  * from pelne_produkty_wlascicieli a
+where a.wlasciciel=$1;]]></definition>
+</function>
+
+<constraint name="Przepisy_kulinarne_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.osoby" table="public.przepisy_kulinarne">
+	<columns names="id_osoba_dodajaca" ref-type="src-columns"/>
+	<columns names="id_osoba" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="Składniki_przepisu_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.przepisy_kulinarne" table="public.&quot;składniki_przepisu&quot;">
+	<columns names="id_przepis" ref-type="src-columns"/>
+	<columns names="id_przepis" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="id_prod_jedn_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.produkty_spozywcze_jednostka" table="public.&quot;składniki_przepisu&quot;">
+	<columns names="id_produkt_jednostka" ref-type="src-columns"/>
+	<columns names="id_produkt_jednostka" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="id_jednostki_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.jednostki_miary" table="public.produkty_spozywcze_jednostka">
+	<columns names="jednostka_miary" ref-type="src-columns"/>
+	<columns names="id_jednsotki" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="id_produkt_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.produkt_spozywczy" table="public.produkty_spozywcze_jednostka">
+	<columns names="id_produkt" ref-type="src-columns"/>
+	<columns names="id_produkt" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="Zbiory_rekwizytów_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.przepisy_kulinarne" table="public.&quot;zbiory_rekwizytów&quot;">
+	<columns names="id_przepis" ref-type="src-columns"/>
+	<columns names="id_przepis" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="id_rekwizyt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.rekwizyt" table="public.&quot;zbiory_rekwizytów&quot;">
+	<columns names="id_rekwizyt" ref-type="src-columns"/>
+	<columns names="id_rekwizyt" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="id_osoba_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.osoby" table="public.rekwizyt_osoby">
+	<columns names="wlasciciel" ref-type="src-columns"/>
+	<columns names="id_osoba" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="id_rekwizyt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.rekwizyt" table="public.rekwizyt_osoby">
+	<columns names="id_rekwizyt" ref-type="src-columns"/>
+	<columns names="id_rekwizyt" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="Ulubione2_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.osoby" table="public.ulubione">
+	<columns names="id_osoba" ref-type="src-columns"/>
+	<columns names="id_osoba" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="Ulubione3_FK" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.przepisy_kulinarne" table="public.ulubione">
+	<columns names="id_przepis" ref-type="src-columns"/>
+	<columns names="id_przepis" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="wlasciciel_pk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.osoby" table="public.przedmiot_osoby">
+	<columns names="wlasciciel" ref-type="src-columns"/>
+	<columns names="id_osoba" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="Produkt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.produkty_spozywcze_jednostka" table="public.przedmiot_osoby">
+	<columns names="id_produkt" ref-type="src-columns"/>
+	<columns names="id_produkt_jednostka" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_przepisy_kulinarne_osoby" type="relfk"
+	 custom-color="#d9b316"
+	 src-table="public.przepisy_kulinarne"
+	 dst-table="public.osoby"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_składniki_przepisu_przepisy_kulinarne&quot;" type="relfk"
+	 custom-color="#c5f2f5"
+	 src-table="public.&quot;składniki_przepisu&quot;"
+	 dst-table="public.przepisy_kulinarne"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_składniki_przepisu_produkty_spozywcze_jednostka&quot;" type="relfk"
+	 custom-color="#f5e6f0"
+	 src-table="public.&quot;składniki_przepisu&quot;"
+	 dst-table="public.produkty_spozywcze_jednostka"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_produkty_spozywcze_jednostka_jednostki_miary" type="relfk"
+	 custom-color="#9de8c8"
+	 src-table="public.produkty_spozywcze_jednostka"
+	 dst-table="public.jednostki_miary"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_produkty_spozywcze_jednostka_produkt_spozywczy" type="relfk"
+	 custom-color="#421c8a"
+	 src-table="public.produkty_spozywcze_jednostka"
+	 dst-table="public.produkt_spozywczy"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_zbiory_rekwizytów_przepisy_kulinarne&quot;" type="relfk"
+	 custom-color="#f6bc9b"
+	 src-table="public.&quot;zbiory_rekwizytów&quot;"
+	 dst-table="public.przepisy_kulinarne"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_zbiory_rekwizytów_rekwizyt&quot;" type="relfk"
+	 custom-color="#b7f4d3"
+	 src-table="public.&quot;zbiory_rekwizytów&quot;"
+	 dst-table="public.rekwizyt"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_rekwizyt_osoby_osoby" type="relfk"
+	 custom-color="#0c3f91"
+	 src-table="public.rekwizyt_osoby"
+	 dst-table="public.osoby"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_rekwizyt_osoby_rekwizyt" type="relfk"
+	 custom-color="#622411"
+	 src-table="public.rekwizyt_osoby"
+	 dst-table="public.rekwizyt"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ulubione_osoby" type="relfk"
+	 custom-color="#087eed"
+	 src-table="public.ulubione"
+	 dst-table="public.osoby"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ulubione_przepisy_kulinarne" type="relfk"
+	 custom-color="#76ae71"
+	 src-table="public.ulubione"
+	 dst-table="public.przepisy_kulinarne"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_przedmiot_osoby_osoby" type="relfk"
+	 custom-color="#33d0a1"
+	 src-table="public.przedmiot_osoby"
+	 dst-table="public.osoby"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_przedmiot_osoby_produkty_spozywcze_jednostka" type="relfk"
+	 custom-color="#38735c"
+	 src-table="public.przedmiot_osoby"
+	 dst-table="public.produkty_spozywcze_jednostka"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

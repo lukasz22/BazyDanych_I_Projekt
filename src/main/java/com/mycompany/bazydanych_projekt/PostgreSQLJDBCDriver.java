@@ -10,12 +10,18 @@ import java.util.logging.Logger;
 import java.util.*;
 import javax.swing.JOptionPane;
 /**
- *
+ * Klasa jest pośrednikiem między bazą danych a interfejsem użytkownika. 
+ * Pozwala połączyc sie z baza danych, rozłączyć się z baza danych, potrafi wykonywac kod SQLowy.
  * @author lukasz
  */
 
 
-public class PostgreSQLJDBCDriverTest {
+public class PostgreSQLJDBCDriver {
+    /**
+     * Łączy aplikację z bazą danych 
+     * @throws InstantiationException
+     * @throws IllegalAccessException 
+     */
     public void connect() throws InstantiationException, IllegalAccessException {
         conn = null;
         try {
@@ -44,6 +50,9 @@ public class PostgreSQLJDBCDriverTest {
             
         }
     }
+    /**
+     * Rozłącza aplikację z bazą danych
+     */
     public void disconnect(){
         try {
             conn.close();
@@ -75,12 +84,37 @@ public class PostgreSQLJDBCDriverTest {
         if (stmt != null) { stmt.close(); }
     }
 }
-    public void dodajUzytkownika(String nazwaTabeli,String serial,String imie, String nazwisko, String nick){
+    /**
+     * Wstawia dane do tabeli osoby
+     * @param imie  wartość dla atrubutu imie
+     * @param nazwisko wartośc dla atrybutu nazwisko
+     * @param nick wartośc dla atrybutu nick
+     */
+    public void dodajUzytkownika(String imie, String nazwisko, String nick){
+        String nazwaTabeli="osoby";
+        if(imie != null && !imie.isEmpty()){
+            imie="\'"+imie+"\'";
+        }
+        else{
+            imie=null;
+        }
+        if(nazwisko != null && !nazwisko.isEmpty()){
+            nazwisko="\'"+nazwisko+"\'";
+        }
+        else{
+            nazwisko=null;
+        }
+         if(nick != null && !nick.isEmpty()){
+            nick="\'"+nick+"\'";
+        }
+        else{
+            nick=null;
+        }
         try {
   //Connection conn = DriverManager.getConnection(url+baza, login, password);
   Statement st = conn.createStatement();
   try {
-   st.executeUpdate("INSERT INTO "+nazwaTabeli+"(imie,haslo,nick) VALUES ('"+imie+"' , '"+nazwisko+"', '"+nick+"')");
+   st.executeUpdate("INSERT INTO "+nazwaTabeli+"(imie,haslo,nick) VALUES ("+imie+" ,"+nazwisko+", "+nick+")");
   System.out.println("Rekord został utworzony");
   JOptionPane.showMessageDialog(null,
     "Dodano użytkownika");
@@ -95,6 +129,13 @@ public class PostgreSQLJDBCDriverTest {
   System.out.println("Uwaga! Mamy problemy z połączeniem!");
  }
     }
+    /**
+     * Pobiera wiersze z bazy danych
+     * @param tabela nazwa tabeli
+     * @param atrybuty nazwy atrybutow tabeli, jakie chcemy dostac
+     * @return Object[n][k], gdzie n-liczba wierszy tabeli,k-liczba atrybutów w wierszu zwróconym
+     * @throws SQLException 
+     */
     public Object[][] getRows(String tabela, String[] atrybuty) throws SQLException{
         Object[][] tabobj=null;
         String atr=new String("");
@@ -131,7 +172,13 @@ public class PostgreSQLJDBCDriverTest {
         return tabobj;
         
     }
-    
+    /**
+     * Pobiera jedną kolumnę z bazy danych
+     * @param tabela nazwa tabeli
+     * @param atrybut nazwa atrubutu
+     * @param warunek warunek (na przykład "id_osoba=4")
+     * @return kolumna atrybutów o nazwie=atrybut
+     */
     public Object[] getElementOfTable(String tabela, String atrybut, String warunek){
         Object[] tabobj=null;
         try {
@@ -154,11 +201,18 @@ public class PostgreSQLJDBCDriverTest {
             System.out.println(tabobj.toString());
             return tabobj;
         } catch (SQLException ex) {
-            Logger.getLogger(PostgreSQLJDBCDriverTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostgreSQLJDBCDriver.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tabobj;
         
     }
+    /**
+     * Dodaje wiersz do bazy danych
+     * @param nazwaTabeli   nazwa tabeli
+     * @param atrybuty nazwy atrybotow, do ktorych chcemy dodac dane
+     * @param wartosci wartosci, ktore chcemy dodac do bazy danych. wartosci[i] trafia do pola o nazwie atryvutu atrybuty[i]
+     * @throws Exception 
+     */
     public void dodajDane(String nazwaTabeli,String[] atrybuty,String[] wartosci) throws Exception{
         try {
   //Connection conn = DriverManager.getConnection(url+baza, login, password);
@@ -174,7 +228,14 @@ public class PostgreSQLJDBCDriverTest {
   int ileval=0;
   while(ileval<wartosci.length){
       if(ileval!=0) val=val+",";
-      val=val+"\'"+wartosci[ileval]+"\'";
+      
+      if(wartosci[ileval] != null && !wartosci[ileval].isEmpty()){
+            val=val+"\'"+wartosci[ileval]+"\'";
+        }
+        else{
+            wartosci[ileval]=null;
+        }
+      
       ileval++;
   }
   
@@ -191,7 +252,16 @@ public class PostgreSQLJDBCDriverTest {
         throw new Exception("Rekord został dodany do bazy danych");
     }
     
-public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws Exception{
+/**
+ * Wykonuje zapytanie SQLowe do bazy 
+ * Select answer from nazwafunkcji(...) as answer 
+ * gdzie ... tu mogą być parametry
+ * @param nazwafunkcji  nazwa funkcji
+ * @param parametry parametry funkcji,
+ * @return to co będzie się kryć jako pierwszy przy atrybucie answer
+ * @throws Exception 
+ */
+    public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws Exception{
     try {
   //Connection conn = DriverManager.getConnection(url+baza, login, password);
         Statement st = conn.createStatement();
@@ -199,7 +269,14 @@ public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws E
         int ileval=0;
         while(ileval<parametry.length){
             if(ileval!=0) val=val+",";
+            
+            if(parametry[ileval] != null && !parametry[ileval].isEmpty()){
             val=val+"\'"+parametry[ileval]+"\'";
+        }
+        else{
+            parametry[ileval]=null;
+        }
+            
             ileval++;
         }
         String str=null;
@@ -221,7 +298,11 @@ public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws E
     throw new Exception("Rekord został dodany do bazy danych");
     
 }
-    
+    /**
+     * Funkcja usuwająca dane z bazy danych
+     * @param str nazwa tabeli wraz z warunkiem
+     * @throws Exception 
+     */
     public void usunRekord(String str) throws Exception{
         try {
   //Connection conn = DriverManager.getConnection(url+baza, login, password);
@@ -240,5 +321,8 @@ public String dodajDaneZfunkcji(String nazwafunkcji,String[] parametry) throws E
  }
         throw new Exception("Usunięto z bazy danych");
     }
+    /**
+     * zmienna typu Connection
+     */
     private Connection conn;
 }

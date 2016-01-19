@@ -9,7 +9,7 @@ import javax.swing.DefaultListSelectionModel;
 import javax.swing.ListSelectionModel;
 
 /**
- *
+ * Klasa dziedziczy po klasie DefaultListSelectionModel. Ma przeładowane dwie funkcje.
  * @author lukasz
  */
 public class ClassListSelectionModel extends DefaultListSelectionModel{

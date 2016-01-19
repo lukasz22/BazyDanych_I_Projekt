@@ -6,7 +6,6 @@ import javax.swing.JComboBox;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//http://edu.pjwstk.edu.pl/wyklady/poj/scb/TabSort/TabSort.html
 
 /**
  *

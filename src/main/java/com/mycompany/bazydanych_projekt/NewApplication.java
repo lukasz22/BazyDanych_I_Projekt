@@ -37,7 +37,7 @@ public class NewApplication extends javax.swing.JFrame {
         rekwizytyOsoby.setEnabled(false);
         yourproducts.setEnabled(false);
         this.setTitle("Książka kucharska - Profil ogólny");
-        psql = new PostgreSQLJDBCDriverTest();
+        psql = new PostgreSQLJDBCDriver();
         try {
             psql.connect();
         } catch (InstantiationException | IllegalAccessException ex) {
@@ -1382,7 +1382,7 @@ public class NewApplication extends javax.swing.JFrame {
 
     private void AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserActionPerformed
         // TODO add your handling code here:
-        psql.dodajUzytkownika("Osoby","",PodajImie.getText(),PodajNazwisko.getText(),PodajNick.getText());
+        psql.dodajUzytkownika(PodajImie.getText(),PodajNazwisko.getText(),PodajNick.getText());
     }//GEN-LAST:event_AddUserActionPerformed
 
     private void zalogujMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zalogujMenuActionPerformed
@@ -1502,13 +1502,11 @@ public class NewApplication extends javax.swing.JFrame {
         else{
             String atr[]={"nazwa"};
             String val[]={NazwaRekwizytu.getText()};
+            String atr2[]={"wlasciciel","id_rekwizyt","ilosc"};
             try {
                 psql.dodajDane("rekwizyt", atr, val);
-            } catch (Exception ex) {
-                System.out.println(ex);
-                info=info+"rekwizyt: "+ex.getMessage()+"\n";
-            }
-            String atr2[]={"wlasciciel","id_rekwizyt","ilosc"};
+            
+            
             ComboIT item=new ComboIT();
             String dane[]={"id_rekwizyt","nazwa"};
             try {
@@ -1516,11 +1514,24 @@ public class NewApplication extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(NewApplication.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Object[] id_rek=psql.getElementOfTable("rekwizyt","id_rekwizyt","nazwa=\'"+NazwaRekwizytu.getText()+"\'");
-            String val2[]={id_user,id_rek[0].toString(),ilosc.getText()};            
+            } catch (Exception ex) {
+                System.out.println(ex);
+                info=info+"rekwizyt: "+ex.getMessage()+"\n";
+            }
+            Object[] id_rek=null;
+            String val2[]=null;
+            try {
+            id_rek=psql.getElementOfTable("rekwizyt","id_rekwizyt","nazwa=\'"+NazwaRekwizytu.getText()+"\'");
+            String val3[]={id_user,id_rek[0].toString(),ilosc.getText()};
+            val2=val3;
+            }catch(Exception ex){System.out.println("Trafilem");}
             try {
                 psql.dodajDane("rekwizyt_osoby", atr2, val2);
-            } catch (Exception ex) {
+            }
+            catch(NullPointerException ex){
+                System.out.println(ex);
+            } 
+            catch (Exception ex) {
                 System.out.println(ex);
                 info=info+"rekwizyt_osoby:"+ex.getMessage()+"\n";
             }
@@ -1576,7 +1587,8 @@ public class NewApplication extends javax.swing.JFrame {
        String info=new String("");
         String input = JOptionPane.showInputDialog(null, "Podaj nazwę nowego produktu:", "Dodawanie nowego produktu",
         JOptionPane.INFORMATION_MESSAGE);
-       if(!input.isEmpty()){
+       if(true){
+        
            try {
                String[] dane={input};
                String[] atrubut={"nazwa_prod"};
@@ -1588,7 +1600,7 @@ public class NewApplication extends javax.swing.JFrame {
        }
        else{
            System.out.println("String pusty. Nie dodano produktu");
-           info=info+"Puste pole. Nie dodano. walidacja po stronie kli?";
+           info=info+"Puste pole. Nie dodano.";
        }
        String dane[]={"id_produkt","nazwa_prod"};
        refreshJComboBox(wybieranieProduktu2,"produkt_spozywczy",dane);
@@ -1603,7 +1615,7 @@ public class NewApplication extends javax.swing.JFrame {
         String info=new String();
         String input = JOptionPane.showInputDialog(null, "Podaj nazwę nowej jednostki:", "Dodawanie nowej jednostki",
         JOptionPane.INFORMATION_MESSAGE);
-       if(!input.isEmpty()){
+       if(!true){
            try {
                String[] dane={input};
                String[] atrubut={"nazwa_jedn"};
@@ -1615,7 +1627,7 @@ public class NewApplication extends javax.swing.JFrame {
        }
        else{
            System.out.println("String pusty. Nie dodano jednostki");
-           info=info+"Puste pole. Nie dodano. walidacja po stronie kli?";
+           info=info+"Puste pole. Nie dodano.";
        }
        String dane[]={"id_jednsotki","nazwa_jedn"};
         refreshJComboBox(wybieranieJednostki,"jednostki_miary",dane);
@@ -2295,7 +2307,7 @@ public class NewApplication extends javax.swing.JFrame {
             }
         });
     }
-    private PostgreSQLJDBCDriverTest psql;
+    private PostgreSQLJDBCDriver psql;
     private String id_user;
     private String imieUser;
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2452,16 +2464,6 @@ public class NewApplication extends javax.swing.JFrame {
     }
     private void refreshWyswietlPrzepisyTable2(String tabelaWar){
         String arg=new String("");
-        /*if(this.wyswietlMojePrzepisyCheckButton.isSelected() || this.wyswietlPrzepisyPokazUlubione.isSelected()){
-            arg+=" where ";
-        }
-       
-        if(this.wyswietlMojePrzepisyCheckButton.isSelected())   arg+=tabelaWar+".id_osoba_dodajaca="+this.id_user;
-        if(this.wyswietlMojePrzepisyCheckButton.isSelected() || this.wyswietlPrzepisyPokazUlubione.isSelected()){
-            arg+=" and ";
-        }
-        if(this.wyswietlPrzepisyPokazUlubione.isSelected())   arg+=tabelaWar+".kto_lubi="+this.id_user;
-*/
         if(this.wyswietlPrzepisyPokazUlubione.isSelected()) {
             if(wyswietlMojePrzepisyCheckButton.isSelected()){
             tabelaWar="przepis_autor_ulubione";
@@ -2503,6 +2505,9 @@ public class NewApplication extends javax.swing.JFrame {
         wyswietlPrzepisyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         
     }
+    /**
+     * Pobiera dane z aktywnosc_osoba i odświeża tabelę rankingTable
+     */
     private void refreshRankingTable(){
         String arg=new String("");
         String tabelaWar="aktywnosc_osoba";
@@ -2522,6 +2527,9 @@ public class NewApplication extends javax.swing.JFrame {
         this.rankingTable.repaint();
         
     }
+    /**
+     * Odświeża tabelę rankingPrawdziwyTable
+     */
     private void refreshRankingTablePrawdziwy(){
         String arg=new String("");
         String tabelaWar="nick_liczba_przepisow_function()";
@@ -2538,6 +2546,9 @@ public class NewApplication extends javax.swing.JFrame {
         this.rankingPrawdziwyTable.repaint();
         
     }
+    /**
+     * Czyści m.in pole formularza
+     */
     public void dodajPrzepisFrameClear(){
         this.nazwaPrzepisu.setText("");
         this.opisWykonania.setText("");
@@ -2571,6 +2582,10 @@ public class NewApplication extends javax.swing.JFrame {
             
         
     }
+    /**
+     * Ustawia, czy pewne elementy mają byc dostepne, czy nie. Ustawia, czy pewne elementy mają byc widoczne, czy nie.
+     * @param flag flaga
+     */
     public void dodajPrzepisFrameDisableOrEnable(boolean flag){
         this.nazwaPrzepisu.setEnabled(flag);
         this.opisWykonania.setEnabled(flag);
@@ -2580,6 +2595,10 @@ public class NewApplication extends javax.swing.JFrame {
         this.dodajSkladnikiDoPrzepisuButton.setVisible(flag);
         this.dodajRekwizytyDoPrzepisuButton.setVisible(flag);
     }
+    /**
+     * Ustawia, czy pewne elementy mają byc dostepne, czy nie. Ustawia napis na "Zalogowany" lub "Niezalogowany"
+     * @param flaga flaga 
+     */
     public void ustawDostep(boolean flaga){
         this.rekwizytyOsoby.setEnabled(flaga);
         this.yourproducts.setEnabled(flaga);

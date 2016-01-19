@@ -9,10 +9,13 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 /**
- *
+ *  Model danych
  * @author lukasz
  */
 public class SkladnikiJednostkaTableModel extends AbstractTableModel implements TableModel {
+    /**
+     * Konstruktor
+     */
     SkladnikiJednostkaTableModel() {
         Object[][]obj ={{}};
             data=obj;
@@ -20,6 +23,11 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
             columnnames=str;
         
     }
+    /**
+     * 
+     * @param dataparam obiekt z danymi
+     * @param columnnamesparam zawiera nazwy kolumn
+     */
     SkladnikiJednostkaTableModel(Object[][] dataparam,String[] columnnamesparam) {
         if(dataparam!=null) data=dataparam;
         else{
@@ -52,7 +60,10 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
     public Class getColumnClass(int column) {
         return (getValueAt(0, column).getClass());
       }
-    
+    /**
+     * Dodaje wiersz do obiektu klasy SkladnikiJednostkaTableModel
+     * @param obj wiersz, który ma byc dodany
+     */
     public void addRow(Object[] obj){
        // if(obj.length==this.getColumnCount()){
             Object[][] dane=new Object[this.getRowCount()+1][this.getColumnCount()];
@@ -67,6 +78,10 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
             this.data=dane;
        // }
     } 
+    /**
+     * Usuwa wiersz z obiektu klasy SkladnikiJednostkaTableModel
+     * @param index numer wiersza
+     */
     public void removeRow(int index){
         
             Object[][] dane=new Object[this.getRowCount()-1][this.getColumnCount()];
@@ -83,6 +98,12 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
             this.data=dane;
         
     } 
+    /**
+     * Bada czy wartość val jest podana w columnie o numerze indexy indexOfColumn
+     * @param indexOfColumn numer indeksu kolumny
+     * @param val wartość
+     * @return true, jeśli obiekt o wartości val istnieje; w przeciwnym wypadku zwraca false
+     */
     public boolean isInColumn(int indexOfColumn, Object val){
         for(int i=0;i< this.getRowCount();i++){
                 if(data[i][indexOfColumn].equals(val)){
@@ -91,6 +112,12 @@ public class SkladnikiJednostkaTableModel extends AbstractTableModel implements 
             }
         return false;
     }
+    /**
+     * Zawiera dane
+     */
     Object[][] data;
+    /**
+     * Zawiera nazwy kolumn
+     */
     String[] columnnames;
 }
