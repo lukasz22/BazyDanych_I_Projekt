@@ -191,7 +191,7 @@ inner join public.osoby b
 on a.id_autor=b.id_osoba;]]></appended-sql>
 </database>
 
-<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
 <sequence name="przepisy_kulinarne_id_przepis_seq"
@@ -495,7 +495,6 @@ on a.id_autor=b.id_osoba;]]></appended-sql>
 
 <view name="pelny_produkt_jednostka">
 	<schema name="public"/>
-	<role name="postgres"/>
 	<position x="344.086" y="565.154"/>
 	<reference>
 		<expression><![CDATA[ SELECT a.id_produkt,

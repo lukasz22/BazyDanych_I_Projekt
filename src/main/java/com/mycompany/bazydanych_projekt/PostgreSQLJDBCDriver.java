@@ -29,8 +29,10 @@ public class PostgreSQLJDBCDriver {
             System.out.println("postgresql JDBC Driver Registered!");
  
             conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/BazaPGModeler_2", "postgres",
+/*                    "jdbc:postgresql://localhost:5432/BazaPGModeler_2", "postgres",
                     "postgres");
+  */            "jdbc:postgresql://pascal:5432/u3bartocha", "u3bartocha",
+                    "3bartocha");  
             //Or use this way
            // conn = DriverManager.getConnection("jdbc:postgresql://localhost/localhost:5432?" +
            // "user=asjava&password=123");
